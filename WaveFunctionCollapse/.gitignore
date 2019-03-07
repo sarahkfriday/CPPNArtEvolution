@@ -1,0 +1,6 @@
+.idea/
+*.bmp
+!samples/*.bmp
+!samples/**/*.bmp
+out/
+/bin/
