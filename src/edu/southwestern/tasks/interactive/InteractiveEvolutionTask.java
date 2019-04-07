@@ -774,6 +774,8 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		} else if(itemID == UNDO_BUTTON_INDEX) {//If undo button clicked
 			// Not implemented yet
 			setUndo();
+		} else if(itemID == ZENTANGLE_BUTTON_INDEX){
+			zentangle();
 		} else if(itemID == EVOLVE_BUTTON_INDEX && BooleanUtil.any(chosen)) {//If evolve button clicked
 			if(Parameters.parameters.booleanParameter("saveInteractiveSelections")) {
 				String dir = FileUtilities.getSaveDirectory() + "/selectedFromGen" +  ((GenerationalEA) MMNEAT.ea).currentGeneration();
@@ -937,6 +939,16 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			//System.out.println("score size " + scores.size() + " previousScores size " + previousScores.size() + " buttons size " + buttons.size() + " i " + i);
 			resetButton(previousScores.get(i).individual, i);
 		}
+	}
+	
+	/**
+	 * Called when the zentangle button is pressed.
+	 * 
+	 * For AI final project
+	 * TODO: not yet implemented! ... do we want to implement it here or override it in picbreederTask?
+	 */
+	public void zentangle() {
+		//send saved images to WaveFunctionCollapse
 	}
 
 	@Override
