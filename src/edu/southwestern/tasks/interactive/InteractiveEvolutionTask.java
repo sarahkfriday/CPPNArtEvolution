@@ -86,6 +86,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 	//private static final int LINEAGE_BUTTON_INDEX = -5;
 	private static final int NETWORK_BUTTON_INDEX = -6;
 	private static final int UNDO_BUTTON_INDEX = -7;
+	private static final int ZENTANGLE_BUTTON_INDEX = -8;
 
 	private static final int BORDER_THICKNESS = 4;
 	private static final int MPG_MIN = 0;//minimum # of mutations per generation
@@ -202,6 +203,9 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 
 		ImageIcon undo = new ImageIcon("data\\picbreeder\\undo.png");
 		Image undo2 = undo.getImage().getScaledInstance(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT, 1);
+		
+		ImageIcon zentangle = new ImageIcon("data\\picbreeder\\zentangle.png");
+		Image zentangle2 = zentangle.getImage().getScaledInstance(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT, 1);
 
 		JButton resetButton = new JButton(new ImageIcon(reset2));
 		JButton saveButton = new JButton(new ImageIcon(save2));
@@ -210,7 +214,8 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		//JButton lineageButton = new JButton(new ImageIcon(lineage2));
 		JButton networkButton = new JButton(new ImageIcon(network2));
 		JButton undoButton = new JButton( new ImageIcon(undo2));
-
+		JButton zentangleButton = new JButton( new ImageIcon(zentangle2));
+		
 		//to make it work on my mac
 		resetButton.setPreferredSize(new Dimension(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT));
 		saveButton.setPreferredSize(new Dimension(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT));
@@ -219,6 +224,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		networkButton.setPreferredSize(new Dimension(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT));
 		undoButton.setPreferredSize(new Dimension(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT));
 		//closeButton.setPreferredSize(new Dimension(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT));
+		zentangleButton.setPreferredSize(new Dimension(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT));
 
 		resetButton.setText("Reset");
 		saveButton.setText("Save");
@@ -227,7 +233,8 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		networkButton.setText("Network");
 		undoButton.setText("Undo");
 		//closeButton.setText("Close");
-
+		zentangleButton.setText("Zentangle");
+		
 		//adds slider for mutation rate change
 		JSlider mutationsPerGeneration = new JSlider(JSlider.HORIZONTAL, MPG_MIN, MPG_MAX, MPG_DEFAULT);
 
@@ -247,6 +254,8 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		networkButton.setToolTipText("Network button");
 		undoButton.setName("" + UNDO_BUTTON_INDEX);
 		undoButton.setToolTipText("Undo button");
+		zentangleButton.setName("" + ZENTANGLE_BUTTON_INDEX);
+		zentangleButton.setToolTipText("Zentangle button");
 
 		mutationsPerGeneration.setMinorTickSpacing(1);
 		mutationsPerGeneration.setPaintTicks(true);
@@ -264,7 +273,8 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		//lineageButton.addActionListener(this);
 		networkButton.addActionListener(this);
 		undoButton.addActionListener(this);
-
+		zentangleButton.addActionListener(this);
+		
 		mutationsPerGeneration.addChangeListener(this);
 
 		if(!Parameters.parameters.booleanParameter("simplifiedInteractiveInterface")) {
@@ -285,6 +295,8 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		//top.add(closeButton);
 		top.add(mutationsPerGeneration);	
 
+		top.add(zentangleButton); //TODO: should we make a parameter for this?? -Alice
+		
 		//instantiates activation function checkboxes
 		for(Integer ftype : ActivationFunctions.allPossibleActivationFunctions()) {
 			boolean checked = ActivationFunctions.availableActivationFunctions.contains(ftype);
