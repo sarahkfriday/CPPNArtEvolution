@@ -106,7 +106,7 @@ public class GraphicsUtil {
 				float[] hsb = getHSBFromCPPN(n, x, y, imageWidth, imageHeight, inputMultiples, time);
 				// network outputs computed on hsb, not rgb scale because
 				// creates better images
-				Color childColor = Color.getHSBColor(hsb[HUE_INDEX], hsb[SATURATION_INDEX], hsb[BRIGHTNESS_INDEX]);
+				Color childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, hsb[BRIGHTNESS_INDEX]);
 				// set back to RGB to draw picture to JFrame
 				image.setRGB(x, y, childColor.getRGB());
 			}
@@ -131,6 +131,9 @@ public class GraphicsUtil {
 
 		float[][][] sourceHSB = new float[img.getWidth()][img.getHeight()][];
 
+		float maxB = 0;
+		float minB = 360;
+		
 		for(int x = 0; x < img.getWidth(); x++) {
 			for(int y = 0; y < img.getHeight(); y++) {
 				//get HSB from input image
@@ -161,6 +164,12 @@ public class GraphicsUtil {
 				float avgH = totalH/count;
 				float avgS = totalS/count;
 				float avgB = totalB/count;
+				if(avgB>maxB) {
+					maxB = avgB;
+				}
+				if(avgB<minB) {
+					minB = avgB;
+				}
 				float[] queriedHSB = new float[]{avgH, avgS, avgB};
 				//scale point for CPPN input
 				ILocated2D scaled = CartesianGeometricUtilities.centerAndScale(new Tuple2D(x, y), img.getWidth(), img.getHeight());
@@ -171,11 +180,23 @@ public class GraphicsUtil {
 				}			
 				n.flush(); // erase recurrent activation
 				float[] hsb = rangeRestrictHSB(n.process(remixedInputs));
-				Color childColor = Color.getHSBColor(hsb[HUE_INDEX], hsb[SATURATION_INDEX], hsb[BRIGHTNESS_INDEX]);
+				Color childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, hsb[BRIGHTNESS_INDEX]);
 				// set back to RGB to draw picture to JFrame
 				remixedImage.setRGB(x, y, childColor.getRGB());
 			}
 		}
+		float brightnessBoundary = (maxB+minB)/2;
+		
+		for(int x = 0; x < img.getWidth(); x++) {
+			for(int y = 0; y < img.getHeight(); y++) {
+				if(getHSBFromImage(remixedImage, x, y)[2] > brightnessBoundary) {
+					remixedImage.setRGB(x, y, 0);
+				} else {
+					remixedImage.setRGB(x, y, 360);
+				}
+			}
+		}
+		
 		return remixedImage;
 	}
 	
@@ -261,8 +282,8 @@ public class GraphicsUtil {
 		int RGB = img.getRGB(x, y);
 		Color c = new Color(RGB, true);
 		int r = c.getRed();
-		int g = c.getGreen();
-		int b = c.getBlue();
+		int g = c.getRed();
+		int b = c.getRed();
 		float[] HSB = Color.RGBtoHSB(r, g, b, null);
 		return HSB;
 	}
@@ -311,7 +332,7 @@ public class GraphicsUtil {
 	 */
 	public static float[] rangeRestrictHSB(double[] hsb) {
 		return new float[] { (float) FullLinearPiecewiseFunction.fullLinear(hsb[HUE_INDEX]),
-				(float) HalfLinearPiecewiseFunction.halfLinear(hsb[SATURATION_INDEX]),
+				0,
 				(float) Math.abs(FullLinearPiecewiseFunction.fullLinear(hsb[BRIGHTNESS_INDEX])) };
 	}
 
