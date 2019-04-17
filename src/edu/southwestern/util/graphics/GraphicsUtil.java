@@ -101,21 +101,40 @@ public class GraphicsUtil {
 	 */
 	public static BufferedImage imageFromCPPN(Network n, int imageWidth, int imageHeight, double[] inputMultiples, double time) {
 		BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
+		float maxB = 0;
+		float minB = 1;
 		for (int x = 0; x < imageWidth; x++) {// scans across whole image
 			for (int y = 0; y < imageHeight; y++) {
 				float[] hsb = getHSBFromCPPN(n, x, y, imageWidth, imageHeight, inputMultiples, time);
 				// network outputs computed on hsb, not rgb scale because
 				// creates better images
-				Color childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, hsb[BRIGHTNESS_INDEX]);
-				if(hsb[BRIGHTNESS_INDEX] > .5) {
-					childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, 1);
-				} else {
-					childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, 0);
+				
+				if(hsb[BRIGHTNESS_INDEX] > maxB) {
+					maxB = hsb[BRIGHTNESS_INDEX];
 				}
+				if(hsb[BRIGHTNESS_INDEX] < minB) {
+					minB = hsb[BRIGHTNESS_INDEX];
+				}
+//				if(hsb[BRIGHTNESS_INDEX] > .5) {
+//					childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, 1);
+//				} else {
+//					childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, 0);
+//				}
 				// set back to RGB to draw picture to JFrame
-				image.setRGB(x, y, childColor.getRGB());
+				//image.setRGB(x, y, childColor.getRGB());
 			}
 		}
+		float midB = (maxB-minB)/2;
+		for (int x = 0; x < imageWidth; x++) {// scans across whole image
+			for (int y = 0; y < imageHeight; y++) {
+				float[] hsb = getHSBFromCPPN(n, x, y, imageWidth, imageHeight, inputMultiples, time);
+				Color childColor = Color.getHSBColor(0, 0, 0);
+				if(hsb[BRIGHTNESS_INDEX] > midB) {
+					childColor = Color.getHSBColor(0, 0, 1);
+				}
+				image.setRGB(x, y, childColor.getRGB());
+			}
+		}		
 		return image;
 	}
 
@@ -188,17 +207,6 @@ public class GraphicsUtil {
 				Color childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, hsb[BRIGHTNESS_INDEX]);
 				// set back to RGB to draw picture to JFrame
 				remixedImage.setRGB(x, y, childColor.getRGB());
-			}
-		}
-		float brightnessBoundary = (maxB+minB)/2;
-		
-		for(int x = 0; x < remixedImage.getWidth(); x++) {
-			for(int y = 0; y < remixedImage.getHeight(); y++) {
-				if(getHSBFromImage(remixedImage, x, y)[2] > brightnessBoundary) {
-					remixedImage.setRGB(x, y, 0);
-				} else {
-					remixedImage.setRGB(x, y, 16777215);
-				}
 			}
 		}
 		
