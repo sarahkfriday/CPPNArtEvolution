@@ -778,11 +778,15 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			zentangle();
 		} else if(itemID == EVOLVE_BUTTON_INDEX && BooleanUtil.any(chosen)) {//If evolve button clicked
 			if(Parameters.parameters.booleanParameter("saveInteractiveSelections")) {
-				String dir = FileUtilities.getSaveDirectory() + "/selectedFromGen" +  ((GenerationalEA) MMNEAT.ea).currentGeneration();
-				new File(dir).mkdir(); // Make the save directory
+				//String dir = FileUtilities.getSaveDirectory() + "/selectedFromGen" +  ((GenerationalEA) MMNEAT.ea).currentGeneration();
+				//new File(dir).mkdir(); // Make the save directory
+				
+				String waveFunctionSaveLocation = "WaveFunctionCollapse/samples/picbreeder"; 
+				
 				for(int i = 0; i < scores.size(); i++) {
 					if(chosen[i]) {
-						String fullName = dir + "/itemGen" + ((GenerationalEA) MMNEAT.ea).currentGeneration() + "_Index" + i + "_ID" + scores.get(i).individual.getId();
+						//String fullName = dir + "/itemGen" + ((GenerationalEA) MMNEAT.ea).currentGeneration() + "_Index" + i + "_ID" + scores.get(i).individual.getId();
+						String fullName = waveFunctionSaveLocation + "/itemGen" + ((GenerationalEA) MMNEAT.ea).currentGeneration() + "_Index" + i + "_ID";
 						save(fullName,i);
 					}
 				}
