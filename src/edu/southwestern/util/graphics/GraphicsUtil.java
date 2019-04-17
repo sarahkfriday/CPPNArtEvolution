@@ -107,6 +107,11 @@ public class GraphicsUtil {
 				// network outputs computed on hsb, not rgb scale because
 				// creates better images
 				Color childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, hsb[BRIGHTNESS_INDEX]);
+				if(hsb[BRIGHTNESS_INDEX] > .5) {
+					childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, 1);
+				} else {
+					childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, 0);
+				}
 				// set back to RGB to draw picture to JFrame
 				image.setRGB(x, y, childColor.getRGB());
 			}
@@ -187,12 +192,12 @@ public class GraphicsUtil {
 		}
 		float brightnessBoundary = (maxB+minB)/2;
 		
-		for(int x = 0; x < img.getWidth(); x++) {
-			for(int y = 0; y < img.getHeight(); y++) {
+		for(int x = 0; x < remixedImage.getWidth(); x++) {
+			for(int y = 0; y < remixedImage.getHeight(); y++) {
 				if(getHSBFromImage(remixedImage, x, y)[2] > brightnessBoundary) {
 					remixedImage.setRGB(x, y, 0);
 				} else {
-					remixedImage.setRGB(x, y, 360);
+					remixedImage.setRGB(x, y, 16777215);
 				}
 			}
 		}
