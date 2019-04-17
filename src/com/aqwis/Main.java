@@ -29,7 +29,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Random random = new Random();
-        File xmlFile = new File("MySamples.xml");
+        File xmlFile = new File("WaveFunctionCollapse/MySamples.xml");
         //File xmlFile = new File("samples.xml");
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 
@@ -39,7 +39,7 @@ public class Main {
             //document.getDocumentElement().normalize();
         } catch (Exception e) {
             e.printStackTrace();
-            exit();
+            System.exit(1);
         }
 
         NodeList nodeList = document.getFirstChild().getChildNodes();
@@ -94,7 +94,7 @@ public class Main {
                             ImageIO.write(graphics, "bmp", file);
                         } catch (IOException e) {
                             e.printStackTrace();
-                            exit();
+                            System.exit(1);
                         }
                         break;
                     } else {

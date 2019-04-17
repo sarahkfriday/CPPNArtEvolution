@@ -37,7 +37,7 @@ public class SimpleTiledWFCModel extends WFCModel {
         this.periodic = periodic;
         this.black = black;
 
-        File xmlFile = new File(String.format("samples/%s/data.xml", name));
+        File xmlFile = new File(String.format("WaveFunctionCollapse/samples/%s/data.xml", name));
         Document document = null;
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 
@@ -46,7 +46,7 @@ public class SimpleTiledWFCModel extends WFCModel {
             document = docBuilder.parse(xmlFile);
         } catch (Exception e) {
             e.printStackTrace();
-            exit();
+            System.exit(1);
         }
 
         assert document != null;
@@ -174,14 +174,14 @@ public class SimpleTiledWFCModel extends WFCModel {
             {
                 for (int t = 0; t < cardinality; t++)
                 {
-                    File bitmapFile = new File(String.format("samples/%s/%s %d.bmp", name, tilename, t));
+                    File bitmapFile = new File(String.format("WaveFunctionCollapse/samples/%s/%s %d.bmp", name, tilename, t));
                     BufferedImage bitmap = ImageIO.read(bitmapFile);
                     tiles.add(tile.apply((x, y) -> new Color(bitmap.getRGB(x, y))));
                 }
             }
             else
             {
-                File bitmapFile = new File(String.format("samples/%s/%s.bmp", name, tilename));
+                File bitmapFile = new File(String.format("WaveFunctionCollapse/samples/%s/%s %d.bmp", name, tilename));
                 BufferedImage bitmap = ImageIO.read(bitmapFile);
                 tiles.add(tile.apply((x, y) -> new Color(bitmap.getRGB(x, y))));
                 for (int t = 1; t < cardinality; t++) {

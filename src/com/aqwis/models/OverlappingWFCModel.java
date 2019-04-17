@@ -147,12 +147,12 @@ public class OverlappingWFCModel extends WFCModel {
 
         File imageFile;
         try {
-            imageFile = new File(String.format("samples/%s.bmp", name));
+            imageFile = new File(String.format("WaveFunctionCollapse/samples/%s.bmp", name));
             if (!imageFile.canRead()) {
                 throw new Exception("No such file");
             }
         } catch (Exception e) {
-            imageFile = new File(String.format("samples/%s.jpg", name));
+            imageFile = new File(String.format("WaveFunctionCollapse/samples/%s.jpg", name));
         }
         BufferedImage bitmap = null;
         try {
@@ -160,7 +160,7 @@ public class OverlappingWFCModel extends WFCModel {
             bitmap = ImageIO.read(new MemoryCacheImageInputStream(a));
         } catch (IOException e) {
             e.printStackTrace();
-            exit();
+            System.exit(1);
         }
 
         int SMX = bitmap.getWidth();
