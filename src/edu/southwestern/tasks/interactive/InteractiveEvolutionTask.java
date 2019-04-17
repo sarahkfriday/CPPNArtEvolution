@@ -69,7 +69,7 @@ import edu.southwestern.util.random.RandomNumbers;
  * @param <T>
  */
 public abstract class InteractiveEvolutionTask<T extends Network> implements SinglePopulationTask<T>, ActionListener, ChangeListener, NetworkTask {
-	
+
 	//Global static final variables
 	public static final int NUM_COLUMNS	= 5;
 	public static final int MPG_DEFAULT = 2;// Starting number of mutations per generation (on slider)	
@@ -177,7 +177,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		//instantiates helper buttons
 		topper = new JPanel();
 		top = new JPanel();
-		
+
 		JPanel bottom = new JPanel();
 		bottom.setPreferredSize(new Dimension(frame.getWidth(), 200)); // 200 magic number: height of checkbox area
 		bottom.setLayout(new FlowLayout());
@@ -203,7 +203,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 
 		ImageIcon undo = new ImageIcon("data\\picbreeder\\undo.png");
 		Image undo2 = undo.getImage().getScaledInstance(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT, 1);
-		
+
 		ImageIcon zentangle = new ImageIcon("data\\picbreeder\\zentangle.png");
 		Image zentangle2 = zentangle.getImage().getScaledInstance(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT, 1);
 
@@ -215,7 +215,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		JButton networkButton = new JButton(new ImageIcon(network2));
 		JButton undoButton = new JButton( new ImageIcon(undo2));
 		JButton zentangleButton = new JButton( new ImageIcon(zentangle2));
-		
+
 		//to make it work on my mac
 		resetButton.setPreferredSize(new Dimension(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT));
 		saveButton.setPreferredSize(new Dimension(ACTION_BUTTON_WIDTH, ACTION_BUTTON_HEIGHT));
@@ -234,7 +234,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		undoButton.setText("Undo");
 		//closeButton.setText("Close");
 		zentangleButton.setText("Zentangle");
-		
+
 		//adds slider for mutation rate change
 		JSlider mutationsPerGeneration = new JSlider(JSlider.HORIZONTAL, MPG_MIN, MPG_MAX, MPG_DEFAULT);
 
@@ -274,7 +274,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		networkButton.addActionListener(this);
 		undoButton.addActionListener(this);
 		zentangleButton.addActionListener(this);
-		
+
 		mutationsPerGeneration.addChangeListener(this);
 
 		if(!Parameters.parameters.booleanParameter("simplifiedInteractiveInterface")) {
@@ -296,7 +296,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		top.add(mutationsPerGeneration);	
 
 		top.add(zentangleButton); //TODO: should we make a parameter for this?? -Alice
-		
+
 		//instantiates activation function checkboxes
 		for(Integer ftype : ActivationFunctions.allPossibleActivationFunctions()) {
 			boolean checked = ActivationFunctions.availableActivationFunctions.contains(ftype);
@@ -465,7 +465,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		buttons.get(buttonIndex).setIcon(img);
 
 	}
-	
+
 	/**
 	 * If user is saving file to a specified location, this method obtains
 	 * the directory in which the file is saved and the desired name of the 
@@ -489,7 +489,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Generalized version of save method that accounts for user pressing 
 	 * "cancel" because this needs to be handled in all extensions of
@@ -505,7 +505,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			System.out.println("Saving cancelled");
 		}
 	}
-	
+
 	/**
 	 * All interactive evolution interfaces must implement this
 	 * class to save generated files. 
@@ -525,7 +525,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		chosen[x] = false;
 		buttons.get(x).setBorder(BorderFactory.createLineBorder(Color.lightGray, BORDER_THICKNESS));
 	}
-	
+
 	/**
 	 * Creates BufferedImage representation of item to be displayed on 
 	 * the buttons of the interface.
@@ -545,10 +545,10 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 	 */
 	private BufferedImage getNetwork(Genotype<T> tg) {
 		T pheno = tg.getPhenotype();
-//		DrawingPanel network = new DrawingPanel(picSize,( frame.getHeight() - topper.getHeight())/numRows, "network");
-//		((TWEANN) pheno).draw(network);
-//		network.setVisibility(false);
-//		return network.image;
+		//		DrawingPanel network = new DrawingPanel(picSize,( frame.getHeight() - topper.getHeight())/numRows, "network");
+		//		((TWEANN) pheno).draw(network);
+		//		network.setVisibility(false);
+		//		return network.image;
 		return ((TWEANN) pheno).getNetworkImage(picSize, (frame.getHeight() - topper.getHeight())/numRows, false, false);
 	}
 
@@ -596,7 +596,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		additionalButtonClickAction(scoreIndex,scores.get(scoreIndex).individual);
 		currentCPPN = scores.get(scoreIndex).individual.getPhenotype();
 	}
-	
+
 	/**
 	 * If the buttons should do something in the interface other than the initial response
 	 * to a click, the associated code should be written in this method.
@@ -614,14 +614,14 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		// Select one of the available activation functions as default
 		CommonConstants.ftype = RandomNumbers.randomElement(ActivationFunctions.availableActivationFunctions);
 		Parameters.parameters.setInteger("ftype", CommonConstants.ftype);
-//		System.out.println("ftype is " + CommonConstants.ftype);
+		//		System.out.println("ftype is " + CommonConstants.ftype);
 		ArrayList<Genotype<T>> newPop = ((SinglePopulationGenerationalEA<T>) MMNEAT.ea).initialPopulation(scores.get(0).individual);
 		scores = new ArrayList<Score<T>>();
 		ActivationFunctionRandomReplacement frr = new ActivationFunctionRandomReplacement();
 		for(int i = 0; i < newPop.size(); i++) {
 			frr.mutate((Genotype<TWEANN>) newPop.get(i));
 			resetButton(newPop.get(i), i);
-//			System.out.println(newPop.get(i));
+			//			System.out.println(newPop.get(i));
 		}	
 	}
 
@@ -636,14 +636,14 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns type of file being saved (for FileExtensionFilter for save method)
 	 * 
 	 * @return type of file being saved
 	 */
 	protected abstract String getFileType();
-	
+
 	/**
 	 * Returns extension of file being saved (for FileExtensionFilter for save method)
 	 * 
@@ -767,8 +767,8 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			reset();
 		} else if(itemID == SAVE_BUTTON_INDEX && BooleanUtil.any(chosen)) { //If save button clicked
 			saveAll();
-		//} else if(itemID == LINEAGE_BUTTON_INDEX) {//If lineage button clicked
-		//	setLineage();
+			//} else if(itemID == LINEAGE_BUTTON_INDEX) {//If lineage button clicked
+			//	setLineage();
 		} else if(itemID == NETWORK_BUTTON_INDEX) {//If network button clicked
 			setNetwork();
 		} else if(itemID == UNDO_BUTTON_INDEX) {//If undo button clicked
@@ -780,9 +780,9 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			if(Parameters.parameters.booleanParameter("saveInteractiveSelections")) {
 				//String dir = FileUtilities.getSaveDirectory() + "/selectedFromGen" +  ((GenerationalEA) MMNEAT.ea).currentGeneration();
 				//new File(dir).mkdir(); // Make the save directory
-				
+
 				String waveFunctionSaveLocation = "WaveFunctionCollapse/samples/picbreeder"; 
-				
+
 				for(int i = 0; i < scores.size(); i++) {
 					if(chosen[i]) {
 						//String fullName = dir + "/itemGen" + ((GenerationalEA) MMNEAT.ea).currentGeneration() + "_Index" + i + "_ID" + scores.get(i).individual.getId();
@@ -944,15 +944,28 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			resetButton(previousScores.get(i).individual, i);
 		}
 	}
-	
+
 	/**
 	 * Called when the zentangle button is pressed.
 	 * 
 	 * For AI final project
-	 * TODO: not yet implemented! ... do we want to implement it here or override it in picbreederTask?
+	 * TODO doesnt interact with wavefucntion collapses
 	 */
 	public void zentangle() {
 		//send saved images to WaveFunctionCollapse
+		if(!BooleanUtil.any(chosen)){
+			System.out.println("cant zentangle if no tiles are chosen! :(");
+		} else {
+
+			String waveFunctionSaveLocation = "WaveFunctionCollapse/samples/picbreeder"; 
+
+			for(int i = 0; i < scores.size(); i++) {
+				if(chosen[i]) {
+					String fullName = waveFunctionSaveLocation + "/itemGen" + ((GenerationalEA) MMNEAT.ea).currentGeneration() + "_Index" + i + "_ID";
+					save(fullName,i);
+				}
+			}
+		}
 	}
 
 	@Override
@@ -967,7 +980,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 	 * @return number of CPPN inputs
 	 */
 	public abstract int numCPPNInputs();
-	
+
 	/**
 	 * Specifies the number of CPPN outputs used in the interactive evolution task.
 	 * 
