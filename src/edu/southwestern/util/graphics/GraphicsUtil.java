@@ -137,6 +137,56 @@ public class GraphicsUtil {
 		}		
 		return image;
 	}
+	
+	/**
+	 * Reflects provided image vertically
+	 * 
+	 * @param n
+	 *            the network used to process the image
+	 * @param imageWidth
+	 *            width of image
+	 * @param imageHeight
+	 *            height of image
+	 * @return Reflected image
+	 */
+	
+	public static BufferedImage reflectHorizontal(BufferedImage originalImage) {
+		int imageWidth = originalImage.getWidth();
+		int imageHeight = originalImage.getHeight();
+		BufferedImage image = new BufferedImage(imageWidth, imageHeight, originalImage.TYPE_INT_RGB);
+		for (int x = 0; x < imageWidth; x++) {// scans across whole image
+			for (int y = 0; y < imageHeight; y++) {
+				int childColor = originalImage.getRGB(x, y);
+				image.setRGB(imageWidth-1-x, y, childColor);
+			}
+		}
+		return image;
+	}
+	
+	/**
+	 * Reflects provided image vertically
+	 * 
+	 * @param n
+	 *            the network used to process the image
+	 * @param imageWidth
+	 *            width of image
+	 * @param imageHeight
+	 *            height of image
+	 * @return Reflected image
+	 */
+	
+	public static BufferedImage reflectVertical(BufferedImage originalImage) {
+		int imageWidth = originalImage.getWidth();
+		int imageHeight = originalImage.getHeight();
+		BufferedImage image = new BufferedImage(imageWidth, imageHeight, originalImage.TYPE_INT_RGB);
+		for (int x = 0; x < imageWidth; x++) {// scans across whole image
+			for (int y = 0; y < imageHeight; y++) {
+				int childColor = originalImage.getRGB(x, y);
+				image.setRGB(x, imageHeight-1-y, childColor);
+			}
+		}
+		return image;
+	}
 
 	/**
 	 * Returns adjusted image based on manipulation of an input image with a CPPN. To add

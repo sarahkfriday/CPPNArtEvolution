@@ -513,6 +513,8 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 	 * @param i Index of item being saved
 	 */
 	protected abstract void save(String file, int i);
+	
+	protected abstract void saveWithReflections(String file, int i);
 
 	/**
 	 * used to reset image on button using given genotype
@@ -962,7 +964,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			for(int i = 0; i < scores.size(); i++) {
 				if(chosen[i]) {
 					String fullName = waveFunctionSaveLocation + "/itemGen" + ((GenerationalEA) MMNEAT.ea).currentGeneration() + "_Index" + i + "_ID";
-					save(fullName,i);
+					saveWithReflections(fullName,i);
 				}
 			}
 		}

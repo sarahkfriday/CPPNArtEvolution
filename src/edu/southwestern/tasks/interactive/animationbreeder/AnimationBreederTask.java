@@ -459,4 +459,10 @@ public class AnimationBreederTask<T extends Network> extends InteractiveEvolutio
 	protected String getFileExtension() {
 		return "gif";
 	}
+
+	@Override
+	protected void saveWithReflections(String file, int i) {
+		// TODO Auto-generated method stub
+		
+	}
 }

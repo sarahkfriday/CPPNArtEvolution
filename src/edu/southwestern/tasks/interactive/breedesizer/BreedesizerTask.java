@@ -329,4 +329,10 @@ public class BreedesizerTask<T extends Network> extends InteractiveEvolutionTask
 	protected String getFileExtension() {
 		return "wav";
 	}
+
+	@Override
+	protected void saveWithReflections(String file, int i) {
+		// TODO Auto-generated method stub
+		
+	}
 }

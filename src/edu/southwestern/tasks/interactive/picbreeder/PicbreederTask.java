@@ -63,9 +63,35 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	protected void save(String filename, int i) {
 		// Use of imageHeight and imageWidth allows saving a higher quality image than is on the button
 		BufferedImage toSave = GraphicsUtil.imageFromCPPN((Network)scores.get(i).individual.getPhenotype(), Parameters.parameters.integerParameter("imageWidth"), Parameters.parameters.integerParameter("imageHeight"), inputMultipliers);
+		BufferedImage toSaveReflected = GraphicsUtil.reflectHorizontal(toSave);
 		filename += ".bmp";
 		GraphicsUtil.saveImage(toSave, filename);
+		String filename2 = filename+"2.bmp";
+		GraphicsUtil.saveImage(toSaveReflected, filename2);
+		
 		System.out.println("image " + filename + " was saved successfully");
+	}
+	
+	@Override
+	protected void saveWithReflections(String filename, int i) {
+		// Use of imageHeight and imageWidth allows saving a higher quality image than is on the button
+		BufferedImage toSave1 = GraphicsUtil.imageFromCPPN((Network)scores.get(i).individual.getPhenotype(), 32, 32, inputMultipliers);
+		BufferedImage toSave2 = GraphicsUtil.reflectHorizontal(toSave1);
+		BufferedImage toSave3 = GraphicsUtil.reflectVertical(toSave1);
+		BufferedImage toSave4 = GraphicsUtil.reflectVertical(toSave2);
+		String filename1 = filename + "1.bmp";
+		GraphicsUtil.saveImage(toSave1, filename1);
+		String filename2 = filename + "2.bmp";
+		GraphicsUtil.saveImage(toSave2, filename2);
+		String filename3 = filename + "3.bmp";
+		GraphicsUtil.saveImage(toSave3, filename3);
+		String filename4 = filename + "4.bmp";
+		GraphicsUtil.saveImage(toSave4, filename4);
+		
+		System.out.println("image " + filename1 + " was saved successfully");
+		System.out.println("image " + filename2 + " was saved successfully");
+		System.out.println("image " + filename3 + " was saved successfully");
+		System.out.println("image " + filename4 + " was saved successfully");
 	}
 
 
