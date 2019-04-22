@@ -951,22 +951,24 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 	 * Called when the zentangle button is pressed.
 	 * 
 	 * For AI final project
-	 * TODO doesnt interact with wavefucntion collapses
+	 * 
 	 */
 	public void zentangle() {
-		//send saved images to WaveFunctionCollapse
 		if(!BooleanUtil.any(chosen)){
 			System.out.println("cant zentangle if no tiles are chosen! :(");
 		} else {
-
+			//Save chosen tiles to WaveFunctionCollapse/samples/picbreeder
 			String waveFunctionSaveLocation = "WaveFunctionCollapse/samples/picbreeder"; 
 
 			for(int i = 0; i < scores.size(); i++) {
 				if(chosen[i]) {
 					String fullName = waveFunctionSaveLocation + "/itemGen" + ((GenerationalEA) MMNEAT.ea).currentGeneration() + "_Index" + i + "_ID";
 					saveWithReflections(fullName,i);
+					//images are saved as reflections so they tile better
 				}
 			}
+			
+			//TODO tile images with wavefunction collapse
 		}
 	}
 
