@@ -8,7 +8,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -172,16 +174,30 @@ public class SimpleTiledWFCModel extends WFCModel {
 
             if (unique)
             {
-                for (int t = 0; t < cardinality; t++)
+            	File dir = new File("WaveFunctionCollapse/samples/%s", name);
+            	String[] filenames = dir.list(new FilenameFilter() {
+
+					@Override
+					public boolean accept(File arg0, String arg1) {
+						return arg1.endsWith(".bmp");
+					}
+            		
+            	});
+            	//System.out.println(Arrays.toString(filenames));
+            	
+                for (int t = 0; t < filenames.length; t++)
                 {
-                    File bitmapFile = new File(String.format("WaveFunctionCollapse/samples/%s/%s %d.bmp", name, tilename, t));
+                    //String.format("WaveFunctionCollapse/samples/%s/%s.bmp", name, tilename)
+                	File bitmapFile = new File(String.format("WaveFunctionCollapse/samples/%s/%s.bmp", name, tilename));
+                    //System.out.println(bitmapFile);
+                    System.out.println(bitmapFile.getAbsolutePath());
                     BufferedImage bitmap = ImageIO.read(bitmapFile);
                     tiles.add(tile.apply((x, y) -> new Color(bitmap.getRGB(x, y))));
                 }
             }
             else
             {
-                File bitmapFile = new File(String.format("WaveFunctionCollapse/samples/%s/%s %d.bmp", name, tilename));
+                File bitmapFile = new File(String.format("WaveFunctionCollapse/samples/%s/%s.bmp", name, tilename));
                 BufferedImage bitmap = ImageIO.read(bitmapFile);
                 tiles.add(tile.apply((x, y) -> new Color(bitmap.getRGB(x, y))));
                 for (int t = 1; t < cardinality; t++) {

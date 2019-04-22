@@ -1,7 +1,7 @@
 <set size="48" unique="True">
 	<tiles>
-		<tile name="cliff" symmetry="T"/>
-		<tile name="cliffcorner" symmetry="L"/>
+		<tile name="cliff" symmetry="L"/>
+		<tile name="cliffcorner" symmetry="T"/>
 		<tile name="cliffturn" symmetry="L"/>
 		<tile name="grass" symmetry="X"/>
 		<tile name="grasscorner" symmetry="L" weight="0.0001"/>
@@ -31,7 +31,7 @@
 		<neighbor left="cliffcorner 1" right="grass 0"/>
 		<neighbor left="cliffturn 1" right="grass 0"/>
 		<neighbor left="cliffturn 1" right="road 3"/>
-		<neighbor left="cliffturn 1" right="roadturn 0"/>
+		<neighbor left="cliffturn 0" right="cliffturn 1"/>
 		<neighbor left="cliffturn 1" right="roadturn 3"/>
 		<neighbor left="grass 0" right="grass 0"/>
 		<neighbor left="grass 0" right="road 3"/>
