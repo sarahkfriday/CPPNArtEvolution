@@ -187,6 +187,33 @@ public class GraphicsUtil {
 		}
 		return image;
 	}
+	
+	/**
+	 * Creates a zentangled image by overlaying two patterns into the black and white areas of the
+	 * background image.
+	 * 
+	 * @param backgroundImage Image into which zentangle will be applied
+	 * @param pattern1 First zentangle pattern
+	 * @param pattern2 Second zentangle pattern
+	 * @return
+	 */
+	public static BufferedImage zentangleImages(BufferedImage backgroundImage, BufferedImage pattern1, BufferedImage pattern2) {
+		int imageWidth = backgroundImage.getWidth();
+		int imageHeight = backgroundImage.getHeight();
+		BufferedImage image = new BufferedImage(imageWidth, imageHeight, backgroundImage.TYPE_INT_RGB);
+		BufferedImage patternImage1 = new BufferedImage(imageWidth, imageHeight, pattern1.TYPE_INT_RGB);
+		BufferedImage patternImage2 = new BufferedImage(imageWidth, imageHeight, pattern2.TYPE_INT_RGB);
+		for (int x = 0; x < imageWidth; x++) {// scans across whole image
+			for (int y = 0; y < imageHeight; y++) {
+				if(backgroundImage.getRGB(x, y) == 0) {
+					image.setRGB(x, y, patternImage1.getRGB(x, y));
+				} else {
+					image.setRGB(x, y, patternImage2.getRGB(x, y));
+				}
+			}
+		}
+		return image;
+	}
 
 	/**
 	 * Returns adjusted image based on manipulation of an input image with a CPPN. To add

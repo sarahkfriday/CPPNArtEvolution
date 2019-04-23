@@ -5,6 +5,12 @@ import org.w3c.dom.*;
 import javax.imageio.ImageIO;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -385,4 +391,59 @@ public class SimpleTiledWFCModel extends WFCModel {
 
         return result;
     }
+    
+    public static void writeAdjacencyRules(String[] patternNames, int numElements) {
+        DocumentBuilderFactory icFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder icBuilder;
+        try {
+            icBuilder = icFactory.newDocumentBuilder();
+            Document doc = icBuilder.newDocument();
+            Element mainRootElement = doc.createElement("set");
+            mainRootElement.setAttribute("size", "48");
+            doc.appendChild(mainRootElement);
+ 
+            Element tilesElement = doc.createElement("tiles");
+            mainRootElement.appendChild(tilesElement);
+            
+            for(int i = 0; i < numElements; i++) {
+            	tilesElement.appendChild(getTile(doc, patternNames[i]+i, "L"));
+            }
+            
+            Element neighborsElement = doc.createElement("neighbors");
+            mainRootElement.appendChild(neighborsElement);
+            
+            for(int i = 0; i < numElements; i++) {
+            	for(int j = 0; j < 1; j++) {
+            		neighborsElement.appendChild(getNeighbor(doc,patternNames[i]+" "+j,patternNames[i]+" "+j+1));
+            	}
+            }
+ 
+            // output DOM XML to console 
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes"); 
+            DOMSource source = new DOMSource(doc);
+            StreamResult console = new StreamResult(System.out);
+            transformer.transform(source, console);
+ 
+            System.out.println("\nXML DOM Created Successfully..");
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+ 
+    private static Node getTile(Document doc, String name, String symmetry) {
+        Element tile = doc.createElement("tile");
+        tile.setAttribute("name", name);
+        tile.setAttribute("symmetry", symmetry);
+        return tile;
+    }
+    
+    private static Node getNeighbor(Document doc, String left, String right) {
+        Element tile = doc.createElement("tile");
+        tile.setAttribute("left", left);
+        tile.setAttribute("right", right);
+        return tile;
+    }
+    
 }
