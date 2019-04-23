@@ -406,7 +406,7 @@ public class SimpleTiledWFCModel extends WFCModel {
             mainRootElement.appendChild(tilesElement);
             
             for(int i = 0; i < numElements; i++) {
-            	tilesElement.appendChild(getTile(doc, patternNames[i]+i, "L"));
+            	tilesElement.appendChild(getTile(doc, patternNames[i], "L"));
             }
             
             Element neighborsElement = doc.createElement("neighbors");
@@ -414,7 +414,7 @@ public class SimpleTiledWFCModel extends WFCModel {
             
             for(int i = 0; i < numElements; i++) {
             	for(int j = 0; j < 1; j++) {
-            		neighborsElement.appendChild(getNeighbor(doc,patternNames[i]+" "+j,patternNames[i]+" "+j+1));
+            		neighborsElement.appendChild(getNeighbor(doc,patternNames[i]+" "+j,patternNames[i]+" "+(j+1)));
             	}
             }
  
