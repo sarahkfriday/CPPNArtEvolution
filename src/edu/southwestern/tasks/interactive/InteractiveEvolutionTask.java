@@ -958,17 +958,28 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			System.out.println("cant zentangle if no tiles are chosen! :(");
 		} else {
 			//Save chosen tiles to WaveFunctionCollapse/samples/picbreeder
-			String waveFunctionSaveLocation = "WaveFunctionCollapse/samples/picbreeder"; 
+			String waveFunctionSaveLocation = "WaveFunctionCollapse/samples/picbreeder/"; 
 
+			int numSaved = 0;
 			for(int i = 0; i < scores.size(); i++) {
 				if(chosen[i]) {
-					String fullName = waveFunctionSaveLocation + "/itemGen" + ((GenerationalEA) MMNEAT.ea).currentGeneration() + "_Index" + i + "_ID";
-					saveWithReflections(fullName,i);
+					
+					String fullName = waveFunctionSaveLocation  + "tile" + numSaved + "_";
+					numSaved++;
+					saveWithReflections(fullName,i); //adds another number to the end
 					//images are saved as reflections so they tile better
 				}
 			}
 			
-			//TODO tile images with wavefunction collapse
+			
+			//use wfc to create final zentangle image, save it as zentangle.bmp
+			
+			//show zentanlge in another window TODO
+			/*
+			System.out.println();
+			JFrame zenframe = new JFrame(getWindowTitle());
+			zenframe.add(new JLabel(new ImageIcon(waveFunctionSaveLocation + "zentangle.bmp"))); //gets from samples\picbreeder
+			*/
 		}
 	}
 
@@ -978,6 +989,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		SelectiveBreedingEA.MUTATION_RATE = source.getValue();
 
 	}
+	
 	/**
 	 * Specifies the number of CPPN inputs used in the interactive evolution task.
 	 * 
