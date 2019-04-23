@@ -413,8 +413,8 @@ public class SimpleTiledWFCModel extends WFCModel {
             mainRootElement.appendChild(neighborsElement);
             
             for(int i = 0; i < numElements; i++) {
-            	for(int j = 0; j < 1; j++) {
-            		neighborsElement.appendChild(getNeighbor(doc,patternNames[i]+" "+j,patternNames[i]+" "+(j+1)));
+            	for(int j = 0; j < 2; j++) {
+            		neighborsElement.appendChild(getNeighbor(doc,patternNames[i]+" "+j,patternNames[i]+" "+(int)(j+1)));
             	}
             }
  
