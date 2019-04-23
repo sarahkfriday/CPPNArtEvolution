@@ -174,7 +174,7 @@ public class SimpleTiledWFCModel extends WFCModel {
 
             if (unique)
             {
-            	File dir = new File("WaveFunctionCollapse/samples/%s", name);
+            	/*File dir = new File("WaveFunctionCollapse/samples/%s", name);
             	String[] filenames = dir.list(new FilenameFilter() {
 
 					@Override
@@ -184,13 +184,12 @@ public class SimpleTiledWFCModel extends WFCModel {
             		
             	});
             	//System.out.println(Arrays.toString(filenames));
-            	
-                for (int t = 0; t < filenames.length; t++)
+            	*/
+                for (int t = 0; t < cardinality; t++)
                 {
-                    //String.format("WaveFunctionCollapse/samples/%s/%s.bmp", name, tilename)
-                	File bitmapFile = new File(String.format("WaveFunctionCollapse/samples/%s/%s.bmp", name, tilename));
+                	File bitmapFile = new File(String.format("WaveFunctionCollapse/samples/%s/%s/ %d.bmp", name, tilename, t));
                     //System.out.println(bitmapFile);
-                    System.out.println(bitmapFile.getAbsolutePath());
+                    //System.out.println(bitmapFile.getAbsolutePath());
                     BufferedImage bitmap = ImageIO.read(bitmapFile);
                     tiles.add(tile.apply((x, y) -> new Color(bitmap.getRGB(x, y))));
                 }
@@ -198,6 +197,7 @@ public class SimpleTiledWFCModel extends WFCModel {
             else
             {
                 File bitmapFile = new File(String.format("WaveFunctionCollapse/samples/%s/%s.bmp", name, tilename));
+                System.out.println(bitmapFile.getAbsolutePath());
                 BufferedImage bitmap = ImageIO.read(bitmapFile);
                 tiles.add(tile.apply((x, y) -> new Color(bitmap.getRGB(x, y))));
                 for (int t = 1; t < cardinality; t++) {

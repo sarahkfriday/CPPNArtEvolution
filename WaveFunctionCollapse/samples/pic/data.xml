@@ -1,0 +1,13 @@
+<set size="48">
+	<tiles>
+		
+		<tile name="itemGen3_Index17_ID4" symmetry="L"/>
+	
+	</tiles>
+	<neighbors>
+		<neighbor left="itemGen3_Index17_ID4 0" right="itemGen3_Index17_ID4 1"/>
+		<neighbor left="itemGen3_Index17_ID4 2" right="itemGen3_Index17_ID4 3"/>
+		<neighbor left="itemGen3_Index17_ID4 1" right="itemGen3_Index17_ID4 0"/>
+		<neighbor left="itemGen3_Index17_ID4 3" right="itemGen3_Index17_ID4 2"/>
+	</neighbors>
+</set>

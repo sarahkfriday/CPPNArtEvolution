@@ -75,7 +75,7 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	@Override
 	protected void saveWithReflections(String filename, int i) {
 		// Use of imageHeight and imageWidth allows saving a higher quality image than is on the button
-		BufferedImage toSave1 = GraphicsUtil.imageFromCPPN((Network)scores.get(i).individual.getPhenotype(), 32, 32, inputMultipliers);
+		BufferedImage toSave1 = GraphicsUtil.imageFromCPPN((Network)scores.get(i).individual.getPhenotype(), 48, 48, inputMultipliers);
 		BufferedImage toSave2 = GraphicsUtil.reflectHorizontal(toSave1);
 		BufferedImage toSave3 = GraphicsUtil.reflectVertical(toSave1);
 		BufferedImage toSave4 = GraphicsUtil.reflectVertical(toSave2);

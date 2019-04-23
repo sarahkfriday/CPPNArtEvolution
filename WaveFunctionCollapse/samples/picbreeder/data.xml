@@ -1,30 +1,26 @@
-<set size="10">
+<set size="48">
 	<tiles>
-		<tile name="itemGen3_Index6_ID1" symmetry="X"/>
-		<tile name="itemGen3_Index6_ID2" symmetry="X"/>
-		<tile name="itemGen3_Index6_ID3" symmetry="X"/>
-		<tile name="itemGen3_Index6_ID4" symmetry="X"/>
-		<tile name="itemGen3_Index15_ID1" symmetry="X"/>
-		<tile name="itemGen3_Index15_ID2" symmetry="X"/>
-		<tile name="itemGen3_Index15_ID3" symmetry="X"/>
-		<tile name="itemGen3_Index15_ID4" symmetry="X"/>
-		<tile name="itemGen3_Index17_ID1" symmetry="X"/>
-		<tile name="itemGen3_Index17_ID2" symmetry="X"/>
-		<tile name="itemGen3_Index17_ID3" symmetry="X"/>
-		<tile name="itemGen3_Index17_ID4" symmetry="X"/>
+		<tile name="itemGen3_Index6_ID1" symmetry="L"/>
+		<tile name="itemGen3_Index15_ID1" symmetry="T"/>
+		<tile name="itemGen3_Index17_ID1" symmetry="L"/>
 	</tiles>
 	<neighbors>
-		<neighbor left="itemGen3_Index6_ID1" right="itemGen3_Index6_ID2"/>
-		<neighbor left="itemGen3_Index6_ID3" right="itemGen3_Index6_ID4"/>
-		<neighbor left="itemGen3_Index6_ID2" right="itemGen3_Index6_ID1"/>
-		<neighbor left="itemGen3_Index6_ID4" right="itemGen3_Index6_ID3"/>
-		<neighbor left="itemGen3_Index15_ID1" right="itemGen3_Index15_ID2"/>
-		<neighbor left="itemGen3_Index15_ID3" right="itemGen3_Index15_ID4"/>
-		<neighbor left="itemGen3_Index15_ID2" right="itemGen3_Index15_ID1"/>
-		<neighbor left="itemGen3_Index15_ID4" right="itemGen3_Index15_ID3"/>
-		<neighbor left="itemGen3_Index17_ID1" right="itemGen3_Index17_ID2"/>
-		<neighbor left="itemGen3_Index17_ID3" right="itemGen3_Index17_ID4"/>
-		<neighbor left="itemGen3_Index17_ID2" right="itemGen3_Index17_ID1"/>
-		<neighbor left="itemGen3_Index17_ID4" right="itemGen3_Index17_ID3"/>
+		<neighbor left="itemGen3_Index6_ID1 0" right="itemGen3_Index6_ID1 1"/>
+		<neighbor left="itemGen3_Index6_ID1 2" right="itemGen3_Index6_ID1 3"/>
+		<neighbor left="itemGen3_Index15_ID1 0" right="itemGen3_Index15_ID1 1"/>
+		<neighbor left="itemGen3_Index15_ID1 2" right="itemGen3_Index15_ID1 3"/>
+		<neighbor left="itemGen3_Index17_ID1 0" right="itemGen3_Index17_ID1 1"/>
+		<neighbor left="itemGen3_Index17_ID1 1" right="itemGen3_Index17_ID1 0"/>
+		
+		<neighbor left="itemGen3_Index6_ID1 1" right="itemGen3_Index15_ID1 0"/>
+		<neighbor left="itemGen3_Index6_ID1 3" right="itemGen3_Index15_ID1 2"/>
+		<neighbor left="itemGen3_Index6_ID1 1" right="itemGen3_Index17_ID1 0"/>
+		
+		<neighbor left="itemGen3_Index15_ID1 1" right="itemGen3_Index6_ID1 0"/>
+		<neighbor left="itemGen3_Index15_ID1 1" right="itemGen3_Index17_ID1 0"/>
+		<neighbor left="itemGen3_Index15_ID1 3" right="itemGen3_Index6_ID1 2"/>
+		
+	
+		
 	</neighbors>
 </set>
