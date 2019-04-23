@@ -32,6 +32,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import com.aqwis.models.SimpleTiledWFCModel;
+
 import edu.southwestern.MMNEAT.MMNEAT;
 import edu.southwestern.evolution.GenerationalEA;
 import edu.southwestern.evolution.SinglePopulationGenerationalEA;
@@ -959,12 +961,17 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		} else {
 			//Save chosen tiles to WaveFunctionCollapse/samples/picbreeder
 			String waveFunctionSaveLocation = "WaveFunctionCollapse/samples/picbreeder/"; 
-
+			
+			String[] tileNames = new String[20*4]; //sorry for magic number
 			int numSaved = 0;
 			for(int i = 0; i < scores.size(); i++) {
 				if(chosen[i]) {
 					
 					String fullName = waveFunctionSaveLocation  + "tile" + numSaved + "_";
+					tileNames[numSaved] = fullName + "1";
+					tileNames[numSaved+1] = fullName + "2";
+					tileNames[numSaved+2] = fullName + "3";
+					tileNames[numSaved+3] = fullName + "4";
 					numSaved++;
 					saveWithReflections(fullName,i); //adds another number to the end
 					//images are saved as reflections so they tile better
@@ -973,6 +980,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			
 			
 			//use wfc to create final zentangle image, save it as zentangle.bmp
+			SimpleTiledWFCModel.writeAdjacencyRules(tileNames, numSaved);
 			
 			//show zentanlge in another window TODO
 			/*
