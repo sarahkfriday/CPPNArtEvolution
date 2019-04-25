@@ -974,7 +974,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 					tileNames[numSaved+2] = fullName + "3";
 					tileNames[numSaved+3] = fullName + "4";
 					numSaved++;
-					saveWithReflections(waveFunctionSaveLocation+fullName,i); //adds another number to the end
+					saveSingle(waveFunctionSaveLocation+fullName,i); //adds another number to the end
 					//images are saved as reflections so they tile better
 				}
 			}
@@ -1019,4 +1019,9 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 	 * @return number of CPPN outputs
 	 */
 	public abstract int numCPPNOutputs();
+
+	protected void saveSingle(String filename, int i) {
+		// TODO Auto-generated method stub
+		
+	}
 }
