@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <set size="48">
 <tiles>
-<tile name="tile0_1" symmetry="L"/>
+<tile name="tile0_1" symmetry="T"/>
 </tiles>
 <neighbors>
 <neighbor left="tile0_1 0" right="tile0_1 1"/>

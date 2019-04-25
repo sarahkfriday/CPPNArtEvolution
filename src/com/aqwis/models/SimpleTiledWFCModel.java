@@ -26,6 +26,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
+import edu.southwestern.util.random.RandomNumbers;
+
 import static javafx.application.Platform.exit;
 
 public class SimpleTiledWFCModel extends WFCModel {
@@ -393,6 +395,16 @@ public class SimpleTiledWFCModel extends WFCModel {
 
         return result;
     }
+    
+    public static String randomCardinality() {
+    	
+    	String cardinalities [] = {"L", "T", "I"};
+    	int n = cardinalities.length - 1;
+    	
+    	int cindex = (int)RandomNumbers.boundedRandom(0, n);
+    	
+    	return cardinalities[cindex];
+    }
     // found info on how to write an XML file here: https://crunchify.com/java-simple-way-to-write-xml-dom-file-in-java/
     
     public static void writeAdjacencyRules(String[] patternNames, int numElements) {
@@ -408,8 +420,12 @@ public class SimpleTiledWFCModel extends WFCModel {
             Element tilesElement = doc.createElement("tiles");
             mainRootElement.appendChild(tilesElement);
             
+            // Write the tiles with randomly generated cardinalities
+            
+            String cardinality = randomCardinality();
+            
             for(int i = 0; i < numElements; i++) {
-            	tilesElement.appendChild(getTile(doc, patternNames[i], "L"));
+            	tilesElement.appendChild(getTile(doc, patternNames[i], cardinality));
             }
             
             Element neighborsElement = doc.createElement("neighbors");
