@@ -89,9 +89,9 @@ public class Main {
                         System.out.println("DONE");
 
                         BufferedImage graphics = wfcModel.graphics();
-                        File file = new File(String.format("%d %s %d.bmp", outerCounter, attributes.getNamedItem("name").getNodeValue(), j));
+                        File file = new File(String.format("WaveFunctionCollapse/samples/%d %sZentangle %d.jpg", outerCounter, attributes.getNamedItem("name").getNodeValue(), j));
                         try {
-                            ImageIO.write(graphics, "bmp", file);
+                            ImageIO.write(graphics, "jpg", file);
                         } catch (IOException e) {
                             e.printStackTrace();
                             System.exit(1);
