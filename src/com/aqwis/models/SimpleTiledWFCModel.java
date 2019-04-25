@@ -14,7 +14,9 @@ import javax.xml.transform.stream.StreamResult;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.FilenameFilter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -391,6 +393,7 @@ public class SimpleTiledWFCModel extends WFCModel {
 
         return result;
     }
+    // found info on how to write an XML file here: https://crunchify.com/java-simple-way-to-write-xml-dom-file-in-java/
     
     public static void writeAdjacencyRules(String[] patternNames, int numElements) {
         DocumentBuilderFactory icFactory = DocumentBuilderFactory.newInstance();
@@ -413,7 +416,7 @@ public class SimpleTiledWFCModel extends WFCModel {
             mainRootElement.appendChild(neighborsElement);
             
             for(int i = 0; i < numElements; i++) {
-            	for(int j = 0; j < 2; j++) {
+            	for(int j = 0; j < 3; j+=2) {
             		neighborsElement.appendChild(getNeighbor(doc,patternNames[i]+" "+j,patternNames[i]+" "+(int)(j+1)));
             	}
             }
@@ -422,8 +425,9 @@ public class SimpleTiledWFCModel extends WFCModel {
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes"); 
             DOMSource source = new DOMSource(doc);
-            StreamResult console = new StreamResult(System.out);
-            transformer.transform(source, console);
+            PrintWriter dataFile = new PrintWriter(new FileWriter("WaveFunctionCollapse/samples/picbreeder/data.xml"));
+            StreamResult data = new StreamResult(dataFile);
+            transformer.transform(source, data);
  
             System.out.println("\nXML DOM Created Successfully..");
  
@@ -440,10 +444,10 @@ public class SimpleTiledWFCModel extends WFCModel {
     }
     
     private static Node getNeighbor(Document doc, String left, String right) {
-        Element tile = doc.createElement("tile");
-        tile.setAttribute("left", left);
-        tile.setAttribute("right", right);
-        return tile;
+        Element neighbor = doc.createElement("neighbor");
+        neighbor.setAttribute("left", left);
+        neighbor.setAttribute("right", right);
+        return neighbor;
     }
     
 }

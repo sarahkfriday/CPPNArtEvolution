@@ -982,6 +982,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			//use wfc to create final zentangle image, save it as zentangle.bmp
 			SimpleTiledWFCModel.writeAdjacencyRules(tileNames, numSaved);
 			
+			
 			//show zentanlge in another window TODO
 			/*
 			System.out.println();
