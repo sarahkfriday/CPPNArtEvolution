@@ -79,29 +79,30 @@ public class Main {
                 continue;
             }
 
-            for (int j = 0; j < attributeFromString(attributes.getNamedItem("screenshots"), 2); j++) {
-                for (int k = 0; k < 10; k++) {
-                    System.out.print("> ");
-                    int seed = random.nextInt();
-                    boolean finished = wfcModel.run(seed, attributeFromString(attributes.getNamedItem("limit"), 0));
+            for (int k = 0; k < 10; k++) {
+            	System.out.print("> ");
+            	int seed = random.nextInt();
+            	boolean finished = wfcModel.run(seed, attributeFromString(attributes.getNamedItem("limit"), 0));
 
-                    if (finished) {
-                        System.out.println("DONE");
+            	if (finished) {
+            		System.out.println("DONE");
 
-                        BufferedImage graphics = wfcModel.graphics();
-                        File file = new File(String.format("WaveFunctionCollapse/samples/%d %sZentangle %d.jpg", outerCounter, attributes.getNamedItem("name").getNodeValue(), j));
-                        try {
-                            ImageIO.write(graphics, "jpg", file);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                            System.exit(1);
-                        }
-                        break;
-                    } else {
-                        System.out.println("CONTRADICTION");
-                    }
-                }
+            		BufferedImage graphics = wfcModel.graphics();
+            		String username = System.getProperty("user.name");
+            		File file = new File(String.format("C:\\Users\\"+username+"\\Desktop/%sZentangle.jpg", attributes.getNamedItem("name").getNodeValue()));
+//            		File file = new File(String.format("WaveFunctionCollapse/samples/ %sZentangle.jpg", attributes.getNamedItem("name").getNodeValue()));
+            		try {
+            			ImageIO.write(graphics, "jpg", file);
+            		} catch (IOException e) {
+            			e.printStackTrace();
+            			System.exit(1);
+            		}
+            		break;
+            	} else {
+            		System.out.println("CONTRADICTION");
+            	}
             }
+
 
             outerCounter++;
         }

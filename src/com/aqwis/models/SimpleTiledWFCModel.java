@@ -393,6 +393,8 @@ public class SimpleTiledWFCModel extends WFCModel {
         result.UnlockBits(bits);
         */
 
+        
+        
         return result;
     }
     

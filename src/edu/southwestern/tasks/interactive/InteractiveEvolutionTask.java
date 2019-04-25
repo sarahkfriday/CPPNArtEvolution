@@ -1,5 +1,7 @@
 package edu.southwestern.tasks.interactive;
 
+import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -11,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -991,11 +994,31 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			}
 			
 			//show zentanlge in another window TODO
-			/*
+			
 			System.out.println();
-			JFrame zenframe = new JFrame(getWindowTitle());
-			zenframe.add(new JLabel(new ImageIcon(waveFunctionSaveLocation + %d %sZentangle %d.jpg", outerCounter, attributes.getNamedItem("name").getNodeValue(), j)))); //gets from samples\picbreeder
-			*/
+			//JFrame zenframe = new JFrame(getWindowTitle());
+			//zenframe.add(new JLabel(new ImageIcon(waveFunctionSaveLocation + %d %sZentangle %d.jpg", outerCounter, attributes.getNamedItem("name").getNodeValue(), j)))); //gets from samples\picbreeder
+//			JFrame frame = new JFrame();
+//			ImageIcon icon = new ImageIcon("WaveFunctionCollapse/samples/picbreederZentangle 0.jpg");
+//			JLabel label = new JLabel(icon);
+//			
+//			frame.getContentPane().add(label, BorderLayout.CENTER);
+//
+//			frame.add(label);
+//			frame.setDefaultCloseOperation
+//			       (JFrame.EXIT_ON_CLOSE);
+//			frame.pack();
+//			frame.setLocationRelativeTo(null);
+//			frame.setVisible(true);
+    		String username = System.getProperty("user.name");
+			File file = new File("C:\\Users\\"+username+"\\Desktop/picbreederZentangle.jpg");
+			try {
+				Desktop.getDesktop().open(file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	}
 
