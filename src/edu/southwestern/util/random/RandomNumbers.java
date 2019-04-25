@@ -113,6 +113,10 @@ public class RandomNumbers {
 		}
 		return result;
 	}
+	
+	public static boolean coinFlip() {
+		return randomGenerator.nextBoolean();
+	}
 
 	/**
 	 * The elements of probabilities must sum to 1.0
@@ -272,6 +276,9 @@ public class RandomNumbers {
 		for (int i = 0; i < size; i++) {
 			System.out.println(cauchies[i] + "\t" + gaussians[i]);
 		}
+		
+		boolean i = coinFlip();
+		System.out.println("i:" + i);
 	}
 
 	/**

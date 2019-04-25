@@ -994,7 +994,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			/*
 			System.out.println();
 			JFrame zenframe = new JFrame(getWindowTitle());
-			zenframe.add(new JLabel(new ImageIcon(waveFunctionSaveLocation + "zentangle.bmp"))); //gets from samples\picbreeder
+			zenframe.add(new JLabel(new ImageIcon(waveFunctionSaveLocation + %d %sZentangle %d.jpg", outerCounter, attributes.getNamedItem("name").getNodeValue(), j)))); //gets from samples\picbreeder
 			*/
 		}
 	}

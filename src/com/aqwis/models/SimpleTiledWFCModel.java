@@ -396,6 +396,11 @@ public class SimpleTiledWFCModel extends WFCModel {
         return result;
     }
     
+    /**
+     * Randomly chooses a cardinality assignment for a tile to be zentangled.
+     * Only chooses from L, T, and I cardinalities
+     * @return String cardinality
+     */
     public static String randomCardinality() {
     	
     	String cardinalities [] = {"L", "T", "I"};
@@ -405,8 +410,15 @@ public class SimpleTiledWFCModel extends WFCModel {
     	
     	return cardinalities[cindex];
     }
-    // found info on how to write an XML file here: https://crunchify.com/java-simple-way-to-write-xml-dom-file-in-java/
     
+    /**
+     * Writes the adjacency rules for the data.xml file that is used in WaveFunctionCollapse.
+     * Default rules create a square out of the tiles. Randomly chooses to add adjacency rules unless
+     * the cardinality is L.
+     * @param String[] patternNames names of the tiles
+     * @param int numElements the number of tiles
+     */
+    // found info on how to write an XML file here: https://crunchify.com/java-simple-way-to-write-xml-dom-file-in-java/
     public static void writeAdjacencyRules(String[] patternNames, int numElements) {
         DocumentBuilderFactory icFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder icBuilder;
@@ -435,6 +447,18 @@ public class SimpleTiledWFCModel extends WFCModel {
             	for(int j = 0; j < 3; j+=2) {
             		neighborsElement.appendChild(getNeighbor(doc,patternNames[i]+" "+j,patternNames[i]+" "+(int)(j+1)));
             	}
+            }
+            
+            // Randomly choose to add additional adjacency rules
+            if (cardinality != "L")
+            {
+            	boolean addCard = RandomNumbers.coinFlip();
+
+//            	for(int i = 0; i < numElements; i++) {
+//                	for(int j = 0; j < 3; j+=2) {
+//                		neighborsElement.appendChild(getNeighbor(doc,patternNames[i]+" "+j,patternNames[i]+" "+(int)(j+1)));
+//                	}
+//                }
             }
  
             // output DOM XML to console 
