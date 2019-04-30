@@ -22,6 +22,7 @@ import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -977,18 +978,17 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 
 					if(numSaved == 0){ //first tile selected becomes background image
 						saveSingle(waveFunctionSaveLocation+"background", i, backgroundSize);
-					}else{ //all others get saved as tiles
-
-						//reserve names for the 4 mirroring of these tile
-						String fullName = "tile" + numSaved + "_";
-						tileNames[numStored++] = fullName + "1";
-						tileNames[numStored++] = fullName + "2";
-						tileNames[numStored++] = fullName + "3";
-						tileNames[numStored++] = fullName + "4";
-						
-						saveSingle(waveFunctionSaveLocation+fullName,i,tileSize); //adds another number to the end
-						//images are saved as reflections so they tile better
 					}
+					//reserve names for the 4 mirroring of these tile
+					String fullName = "tile" + numSaved + "_";
+					tileNames[numStored++] = fullName + "1";
+					tileNames[numStored++] = fullName + "2";
+					tileNames[numStored++] = fullName + "3";
+					tileNames[numStored++] = fullName + "4";
+
+					saveSingle(waveFunctionSaveLocation+fullName,i,tileSize); //adds another number to the end
+					//images are saved as reflections so they tile better
+
 					numSaved++;
 				}
 			}
@@ -1023,7 +1023,35 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 					e.printStackTrace();
 				}
 			}
-
+			String username = System.getProperty("user.name");
+			BufferedImage bgImage = null;
+			BufferedImage firstImage = null;
+			BufferedImage secondImage = null;
+			try {
+				bgImage = ImageIO.read(new File(waveFunctionSaveLocation+"background1.bmp"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				firstImage = ImageIO.read(new File("C:\\Users\\"+username+"\\Desktop/picbreederZentangle"+1+".jpg"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				secondImage = ImageIO.read(new File("C:\\Users\\"+username+"\\Desktop/picbreederZentangle"+2+".jpg"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			BufferedImage zentangle = GraphicsUtil.zentangleImages(bgImage,firstImage,secondImage);
+		    File outputfile = new File(waveFunctionSaveLocation+"zentangle.png");
+		    try {
+				ImageIO.write(zentangle, "png", outputfile);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			System.out.println("image " + "zentangle" + " was saved successfully");
 		}
 	}
 

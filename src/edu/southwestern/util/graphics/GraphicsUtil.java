@@ -201,14 +201,12 @@ public class GraphicsUtil {
 		int imageWidth = backgroundImage.getWidth();
 		int imageHeight = backgroundImage.getHeight();
 		BufferedImage image = new BufferedImage(imageWidth, imageHeight, backgroundImage.TYPE_INT_RGB);
-		BufferedImage patternImage1 = new BufferedImage(imageWidth, imageHeight, pattern1.TYPE_INT_RGB);
-		BufferedImage patternImage2 = new BufferedImage(imageWidth, imageHeight, pattern2.TYPE_INT_RGB);
 		for (int x = 0; x < imageWidth; x++) {// scans across whole image
 			for (int y = 0; y < imageHeight; y++) {
-				if(backgroundImage.getRGB(x, y) == 0) {
-					image.setRGB(x, y, patternImage1.getRGB(x, y));
+				if(backgroundImage.getRGB(x, y) == Color.BLACK.getRGB()) {
+					image.setRGB(x, y, pattern1.getRGB(x, y));
 				} else {
-					image.setRGB(x, y, patternImage2.getRGB(x, y));
+					image.setRGB(x, y, pattern2.getRGB(x, y));
 				}
 			}
 		}
