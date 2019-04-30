@@ -27,7 +27,7 @@ public class Main {
     private static Integer attributeFromString(Node item, Integer defaultValue) { return item == null ? defaultValue : Integer.parseInt(item.getNodeValue()); }
     private static String attributeFromString(Node item, String defaultValue) { return item == null ? defaultValue : item.getNodeValue(); }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args, int index) throws Exception {
         Random random = new Random();
         File xmlFile = new File("WaveFunctionCollapse/MySamples.xml");
         //File xmlFile = new File("samples.xml");
@@ -89,7 +89,7 @@ public class Main {
 
             		BufferedImage graphics = wfcModel.graphics();
             		String username = System.getProperty("user.name");
-            		File file = new File(String.format("C:\\Users\\"+username+"\\Desktop/%sZentangle.jpg", attributes.getNamedItem("name").getNodeValue()));
+            		File file = new File(String.format("C:\\Users\\"+username+"\\Desktop/picbreederZentangle"+index+".jpg", attributes.getNamedItem("name").getNodeValue()));
 //            		File file = new File(String.format("WaveFunctionCollapse/samples/ %sZentangle.jpg", attributes.getNamedItem("name").getNodeValue()));
             		try {
             			ImageIO.write(graphics, "jpg", file);

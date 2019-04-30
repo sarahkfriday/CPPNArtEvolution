@@ -968,55 +968,50 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			
 			String[] tileNames = new String[20*4]; //sorry for magic number
 			int numSaved = 0;
+			int numStored = 0;
 			for(int i = 0; i < scores.size(); i++) {
 				if(chosen[i]) {
-					
 					String fullName = "tile" + numSaved + "_";
-					tileNames[numSaved] = fullName + "1";
-					tileNames[numSaved+1] = fullName + "2";
-					tileNames[numSaved+2] = fullName + "3";
-					tileNames[numSaved+3] = fullName + "4";
+					tileNames[numStored++] = fullName + "1";
+					tileNames[numStored++] = fullName + "2";
+					tileNames[numStored++] = fullName + "3";
+					tileNames[numStored++] = fullName + "4";
 					numSaved++;
+					//save(waveFunctionSaveLocation+fullName, i);
 					saveSingle(waveFunctionSaveLocation+fullName,i); //adds another number to the end
 					//images are saved as reflections so they tile better
 				}
 			}
 			
-			
+
 			//use wfc to create final zentangle image, save it as zentangle.bmp
-			SimpleTiledWFCModel.writeAdjacencyRules(tileNames, numSaved);
-			String[] args = {};
-			try {
-				Main.main(args);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			//show zentanlge in another window TODO
-			
-			System.out.println();
-			//JFrame zenframe = new JFrame(getWindowTitle());
-			//zenframe.add(new JLabel(new ImageIcon(waveFunctionSaveLocation + %d %sZentangle %d.jpg", outerCounter, attributes.getNamedItem("name").getNodeValue(), j)))); //gets from samples\picbreeder
-//			JFrame frame = new JFrame();
-//			ImageIcon icon = new ImageIcon("WaveFunctionCollapse/samples/picbreederZentangle 0.jpg");
-//			JLabel label = new JLabel(icon);
-//			
-//			frame.getContentPane().add(label, BorderLayout.CENTER);
-//
-//			frame.add(label);
-//			frame.setDefaultCloseOperation
-//			       (JFrame.EXIT_ON_CLOSE);
-//			frame.pack();
-//			frame.setLocationRelativeTo(null);
-//			frame.setVisible(true);
-    		String username = System.getProperty("user.name");
-			File file = new File("C:\\Users\\"+username+"\\Desktop/picbreederZentangle.jpg");
-			try {
-				Desktop.getDesktop().open(file);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			int firstTileIndex=0;
+			for(int i = 0; i < numSaved; i++) {
+				String[] tilesToProcess = new String[4];
+				for(int j = 0; j < 4; j++) {
+					tilesToProcess[j] = tileNames[firstTileIndex];
+					firstTileIndex++;
+				}
+				SimpleTiledWFCModel.writeAdjacencyRules(tilesToProcess, 1);
+				String[] args = {};
+				try {
+					Main.main(args,i);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//show zentangle in another window TODO
+
+				System.out.println();
+				String username = System.getProperty("user.name");
+				File file = new File("C:\\Users\\"+username+"\\Desktop/picbreederZentangle"+i+".jpg");
+				try {
+					Desktop.getDesktop().open(file);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 		}
