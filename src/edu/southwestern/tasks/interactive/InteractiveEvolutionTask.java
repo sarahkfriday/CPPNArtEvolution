@@ -966,10 +966,11 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			//Save chosen tiles to WaveFunctionCollapse/samples/picbreeder
 			String waveFunctionSaveLocation = "WaveFunctionCollapse/samples/picbreeder/"; 
 
-			String[] tileNames = new String[20*4]; //20 images in picbreeder * 4 rotations each
+			String[] tileNames = new String[20*4]; //20 images in picbreeder * 4 reflections each
 			int numSaved = 0;
 			int numStored = 0;
 			int backgroundSize = 1440;
+			int tileSize = 48;
 			
 			for(int i = 0; i < scores.size(); i++) {
 				if(chosen[i]) {
@@ -985,8 +986,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 						tileNames[numStored++] = fullName + "3";
 						tileNames[numStored++] = fullName + "4";
 						
-						
-						saveSingle(waveFunctionSaveLocation+fullName,i); //adds another number to the end
+						saveSingle(waveFunctionSaveLocation+fullName,i,tileSize); //adds another number to the end
 						//images are saved as reflections so they tile better
 					}
 					numSaved++;
