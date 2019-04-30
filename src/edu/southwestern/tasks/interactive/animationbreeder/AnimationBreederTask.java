@@ -465,4 +465,10 @@ public class AnimationBreederTask<T extends Network> extends InteractiveEvolutio
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void saveSingle(String filename, int i, int dim) {
+		// TODO Auto-generated method stub
+		
+	}
 }

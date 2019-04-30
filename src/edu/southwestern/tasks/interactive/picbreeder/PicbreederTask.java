@@ -76,7 +76,7 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	public void saveSingle(String filename, int i, int dim) {
 	// Use of imageHeight and imageWidth allows saving a higher quality image than is on the button
 	BufferedImage toSave1 = GraphicsUtil.imageFromCPPN((Network)scores.get(i).individual.getPhenotype(), dim, dim, inputMultipliers);
-		String filename1 = filename + "1.bmp";
+		String filename1 = filename + ".bmp";
 		GraphicsUtil.saveImage(toSave1, filename1);
 		
 		System.out.println("image " + filename1 + " was saved successfully");

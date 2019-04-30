@@ -519,7 +519,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 	 * @param i Index of item being saved
 	 */
 	protected abstract void save(String file, int i);
-	
+
 	protected abstract void saveWithReflections(String file, int i);
 
 	/**
@@ -965,24 +965,34 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		} else {
 			//Save chosen tiles to WaveFunctionCollapse/samples/picbreeder
 			String waveFunctionSaveLocation = "WaveFunctionCollapse/samples/picbreeder/"; 
-			
-			String[] tileNames = new String[20*4]; //sorry for magic number
+
+			String[] tileNames = new String[20*4]; //20 images in picbreeder * 4 rotations each
 			int numSaved = 0;
 			int numStored = 0;
+			int backgroundSize = 1440;
+			
 			for(int i = 0; i < scores.size(); i++) {
 				if(chosen[i]) {
-					String fullName = "tile" + numSaved + "_";
-					tileNames[numStored++] = fullName + "1";
-					tileNames[numStored++] = fullName + "2";
-					tileNames[numStored++] = fullName + "3";
-					tileNames[numStored++] = fullName + "4";
+
+					if(numSaved == 0){ //first tile selected becomes background image
+						saveSingle(waveFunctionSaveLocation+"background", i, backgroundSize);
+					}else{ //all others get saved as tiles
+
+						//reserve names for the 4 mirroring of these tile
+						String fullName = "tile" + numSaved + "_";
+						tileNames[numStored++] = fullName + "1";
+						tileNames[numStored++] = fullName + "2";
+						tileNames[numStored++] = fullName + "3";
+						tileNames[numStored++] = fullName + "4";
+						
+						
+						saveSingle(waveFunctionSaveLocation+fullName,i); //adds another number to the end
+						//images are saved as reflections so they tile better
+					}
 					numSaved++;
-					//save(waveFunctionSaveLocation+fullName, i);
-					saveSingle(waveFunctionSaveLocation+fullName,i); //adds another number to the end
-					//images are saved as reflections so they tile better
 				}
 			}
-			
+
 
 			//use wfc to create final zentangle image, save it as zentangle.bmp
 			int firstTileIndex=0;
@@ -1000,7 +1010,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 				//show zentangle in another window TODO
 
 				System.out.println();
@@ -1013,7 +1023,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 					e.printStackTrace();
 				}
 			}
-			
+
 		}
 	}
 
@@ -1023,7 +1033,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 		SelectiveBreedingEA.MUTATION_RATE = source.getValue();
 
 	}
-	
+
 	/**
 	 * Specifies the number of CPPN inputs used in the interactive evolution task.
 	 * 
@@ -1040,6 +1050,6 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 
 	protected void saveSingle(String filename, int i) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

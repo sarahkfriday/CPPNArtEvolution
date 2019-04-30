@@ -335,4 +335,10 @@ public class BreedesizerTask<T extends Network> extends InteractiveEvolutionTask
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void saveSingle(String filename, int i, int dim) {
+		// TODO Auto-generated method stub
+		
+	}
 }
