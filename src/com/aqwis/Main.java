@@ -89,8 +89,8 @@ public class Main {
 
             		BufferedImage graphics = wfcModel.graphics();
             		String username = System.getProperty("user.name");
-            		File file = new File(String.format("C:\\Users\\"+username+"\\Desktop/picbreederZentangle"+index+".jpg", attributes.getNamedItem("name").getNodeValue()));
-//            		File file = new File(String.format("WaveFunctionCollapse/samples/ %sZentangle.jpg", attributes.getNamedItem("name").getNodeValue()));
+            		//File file = new File(String.format("C:\\Users\\"+username+"\\Desktop/picbreederZentangle"+index+".jpg", attributes.getNamedItem("name").getNodeValue()));
+            		File file = new File(String.format("WaveFunctionCollapse/samples/picbreederZentangle"+index+".jpg", attributes.getNamedItem("name").getNodeValue()));
             		try {
             			ImageIO.write(graphics, "jpg", file);
             		} catch (IOException e) {

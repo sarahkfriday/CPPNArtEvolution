@@ -1033,12 +1033,12 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 				e.printStackTrace();
 			}
 			try {
-				firstImage = ImageIO.read(new File("C:\\Users\\"+username+"\\Desktop/picbreederZentangle"+1+".jpg"));
+				firstImage = ImageIO.read(new File("WaveFunctionCollapse/samples/picbreederZentangle"+1+".jpg"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			try {
-				secondImage = ImageIO.read(new File("C:\\Users\\"+username+"\\Desktop/picbreederZentangle"+2+".jpg"));
+				secondImage = ImageIO.read(new File("WaveFunctionCollapse/samples/picbreederZentangle"+2+".jpg"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
