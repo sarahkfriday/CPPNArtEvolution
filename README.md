@@ -1,4 +1,20 @@
-# CPPNArtEvolution
+# CPPNArtEvolutionandWFC
+
+How to make a Zentangle:
+	* run PicbreederTask.java
+	* evolve images until you find some that you think would make interesting patterns
+	* select 3 images and press zentangle! it may take take a few moments.
+	* the first selected image becomes the background 
+		(first from top-left to bottom-right, NOT first chronologically)
+	* the remaining two images will fill be converted into a pattern by WFC and used to fill
+		the white and black spaces from the background image.
+	* your image should appear in a new window :)
+
+For this project, we have edited InteractiveEvolutionTask, which is implemented by a few other "tasks", such as breedesizer and animationbreeder. As a result, these will also have a zentangle button, but it won't do anything good there; it is only meant for vanilla Picbreeder as we have configured it (dual tone black and white).
+
+- Sarah Friday, Anna Krolikowski, and Alice Quintanilla
+
+# Below is the readme file that originally was included in CPPNArtEvolution  
 
 This project contains several forms of interactive art evolution, all based on CPPNs. All code in this project is part of the main [MM-NEAT project](https://github.com/schrum2/MM-NEAT), but this project is simplified to remove much extraneous code not required for interactive evolution. This project is also much easier to use and launch. Just follow the instructions below:
 
