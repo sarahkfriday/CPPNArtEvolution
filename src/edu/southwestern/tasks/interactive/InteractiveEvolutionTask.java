@@ -1013,15 +1013,15 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 
 				//show zentangle in another window TODO
 
-				System.out.println();
-				String username = System.getProperty("user.name");
-				File file = new File("C:\\Users\\"+username+"\\Desktop/picbreederZentangle"+i+".jpg");
-				try {
-					Desktop.getDesktop().open(file);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//				System.out.println();
+//				String username = System.getProperty("user.name");
+//				File file = new File("C:\\Users\\"+username+"\\Desktop/picbreederZentangle"+i+".jpg");
+//				try {
+//					Desktop.getDesktop().open(file);
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 			}
 			String username = System.getProperty("user.name");
 			BufferedImage bgImage = null;
@@ -1052,6 +1052,13 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 			}
 			
 			System.out.println("image " + "zentangle" + " was saved successfully");
+			
+			try {
+				Desktop.getDesktop().open(outputfile);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
