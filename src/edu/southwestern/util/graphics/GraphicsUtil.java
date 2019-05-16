@@ -12,7 +12,6 @@ import javax.imageio.ImageIO;
 
 import edu.southwestern.networks.Network;
 import edu.southwestern.networks.activationfunctions.FullLinearPiecewiseFunction;
-import edu.southwestern.networks.activationfunctions.HalfLinearPiecewiseFunction;
 import edu.southwestern.tasks.interactive.picbreeder.PicbreederTask;
 import edu.southwestern.util.CartesianGeometricUtilities;
 import edu.southwestern.util.datastructures.ArrayUtil;
@@ -153,7 +152,7 @@ public class GraphicsUtil {
 	public static BufferedImage reflectHorizontal(BufferedImage originalImage) {
 		int imageWidth = originalImage.getWidth();
 		int imageHeight = originalImage.getHeight();
-		BufferedImage image = new BufferedImage(imageWidth, imageHeight, originalImage.TYPE_INT_RGB);
+		BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
 		for (int x = 0; x < imageWidth; x++) {// scans across whole image
 			for (int y = 0; y < imageHeight; y++) {
 				int childColor = originalImage.getRGB(x, y);
@@ -178,7 +177,7 @@ public class GraphicsUtil {
 	public static BufferedImage reflectVertical(BufferedImage originalImage) {
 		int imageWidth = originalImage.getWidth();
 		int imageHeight = originalImage.getHeight();
-		BufferedImage image = new BufferedImage(imageWidth, imageHeight, originalImage.TYPE_INT_RGB);
+		BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
 		for (int x = 0; x < imageWidth; x++) {// scans across whole image
 			for (int y = 0; y < imageHeight; y++) {
 				int childColor = originalImage.getRGB(x, y);
@@ -200,7 +199,7 @@ public class GraphicsUtil {
 	public static BufferedImage zentangleImages(BufferedImage backgroundImage, BufferedImage pattern1, BufferedImage pattern2) {
 		int imageWidth = backgroundImage.getWidth();
 		int imageHeight = backgroundImage.getHeight();
-		BufferedImage image = new BufferedImage(imageWidth, imageHeight, backgroundImage.TYPE_INT_RGB);
+		BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
 		for (int x = 0; x < imageWidth; x++) {// scans across whole image
 			for (int y = 0; y < imageHeight; y++) {
 				if(backgroundImage.getRGB(x, y) == Color.BLACK.getRGB()) {
