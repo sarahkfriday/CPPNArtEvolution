@@ -1,8 +1,7 @@
 package edu.southwestern.tasks.interactive;
 
-import java.awt.BorderLayout;
-import java.awt.Desktop;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -57,7 +56,6 @@ import edu.southwestern.tasks.SinglePopulationTask;
 import edu.southwestern.util.BooleanUtil;
 import edu.southwestern.util.CombinatoricUtilities;
 import edu.southwestern.util.PopulationUtil;
-import edu.southwestern.util.file.FileUtilities;
 import edu.southwestern.util.graphics.DrawingPanel;
 import edu.southwestern.util.graphics.GraphicsUtil;
 import edu.southwestern.util.random.RandomNumbers;
@@ -521,6 +519,7 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 	 */
 	protected abstract void save(String file, int i);
 
+	// TODO: Inappropriate to have this method here.
 	protected abstract void saveWithReflections(String file, int i);
 
 	/**
@@ -958,6 +957,8 @@ public abstract class InteractiveEvolutionTask<T extends Network> implements Sin
 	 * Called when the zentangle button is pressed.
 	 * 
 	 * For AI final project
+	 * 
+	 * TODO: Move this method out of this class into a more appropriate one
 	 * 
 	 */
 	public void zentangle() {
