@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -12,6 +13,8 @@ import javax.imageio.ImageIO;
 
 import edu.southwestern.networks.Network;
 import edu.southwestern.networks.activationfunctions.FullLinearPiecewiseFunction;
+import edu.southwestern.networks.activationfunctions.HalfLinearPiecewiseFunction;
+import edu.southwestern.parameters.Parameters;
 import edu.southwestern.tasks.interactive.picbreeder.PicbreederTask;
 import edu.southwestern.util.CartesianGeometricUtilities;
 import edu.southwestern.util.datastructures.ArrayUtil;
@@ -54,6 +57,7 @@ public class GraphicsUtil {
 		String extension = filename.substring(filename.lastIndexOf(".") + 1);
 		// write file
 		try {
+			System.out.println("Save image: "+filename);
 			ImageIO.write(image, extension, new java.io.File(filename));
 		} catch (java.io.IOException e) {
 			System.err.println("Unable to save image:\n" + e);
@@ -100,101 +104,58 @@ public class GraphicsUtil {
 	 */
 	public static BufferedImage imageFromCPPN(Network n, int imageWidth, int imageHeight, double[] inputMultiples, double time) {
 		BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
+		// Min and max brightness levels used for stark coloring
 		float maxB = 0;
 		float minB = 1;
 		for (int x = 0; x < imageWidth; x++) {// scans across whole image
-			for (int y = 0; y < imageHeight; y++) {
-				float[] hsb = getHSBFromCPPN(n, x, y, imageWidth, imageHeight, inputMultiples, time);
+			for (int y = 0; y < imageHeight; y++) {				
 				// network outputs computed on hsb, not rgb scale because
-				// creates better images
-				
-				if(hsb[BRIGHTNESS_INDEX] > maxB) {
-					maxB = hsb[BRIGHTNESS_INDEX];
-				}
-				if(hsb[BRIGHTNESS_INDEX] < minB) {
-					minB = hsb[BRIGHTNESS_INDEX];
-				}
-//				if(hsb[BRIGHTNESS_INDEX] > .5) {
-//					childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, 1);
-//				} else {
-//					childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, 0);
-//				}
-				// set back to RGB to draw picture to JFrame
-				//image.setRGB(x, y, childColor.getRGB());
-			}
-		}
-		float midB = (maxB-minB)/2;
-		for (int x = 0; x < imageWidth; x++) {// scans across whole image
-			for (int y = 0; y < imageHeight; y++) {
 				float[] hsb = getHSBFromCPPN(n, x, y, imageWidth, imageHeight, inputMultiples, time);
-				Color childColor = Color.getHSBColor(0, 0, 0);
-				if(hsb[BRIGHTNESS_INDEX] > midB) {
-					childColor = Color.getHSBColor(0, 0, 1);
+				maxB = Math.max(maxB, hsb[BRIGHTNESS_INDEX]);
+				minB = Math.min(minB, hsb[BRIGHTNESS_INDEX]);
+				if(Parameters.parameters.booleanParameter("blackAndWhitePicbreeder")) { // black and white
+					Color childColor = Color.getHSBColor(0, 0, hsb[BRIGHTNESS_INDEX]);
+					// set back to RGB to draw picture to JFrame
+					image.setRGB(x, y, childColor.getRGB());
+				} else { // Original Picbreeder color encoding
+					Color childColor = Color.getHSBColor(hsb[HUE_INDEX], hsb[SATURATION_INDEX], hsb[BRIGHTNESS_INDEX]);
+					// set back to RGB to draw picture to JFrame
+					image.setRGB(x, y, childColor.getRGB());
 				}
-				image.setRGB(x, y, childColor.getRGB());
-			}
-		}		
-		return image;
-	}
-	
-	/**
-	 * Reflects provided image vertically
-	 * 
-	 * @param n
-	 *            the network used to process the image
-	 * @param imageWidth
-	 *            width of image
-	 * @param imageHeight
-	 *            height of image
-	 * @return Reflected image
-	 */
-	
-	public static BufferedImage reflectHorizontal(BufferedImage originalImage) {
-		int imageWidth = originalImage.getWidth();
-		int imageHeight = originalImage.getHeight();
-		BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
-		for (int x = 0; x < imageWidth; x++) {// scans across whole image
-			for (int y = 0; y < imageHeight; y++) {
-				int childColor = originalImage.getRGB(x, y);
-				image.setRGB(imageWidth-1-x, y, childColor);
 			}
 		}
-		return image;
-	}
-	
-	/**
-	 * Reflects provided image vertically
-	 * 
-	 * @param n
-	 *            the network used to process the image
-	 * @param imageWidth
-	 *            width of image
-	 * @param imageHeight
-	 *            height of image
-	 * @return Reflected image
-	 */
-	
-	public static BufferedImage reflectVertical(BufferedImage originalImage) {
-		int imageWidth = originalImage.getWidth();
-		int imageHeight = originalImage.getHeight();
-		BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
-		for (int x = 0; x < imageWidth; x++) {// scans across whole image
-			for (int y = 0; y < imageHeight; y++) {
-				int childColor = originalImage.getRGB(x, y);
-				image.setRGB(x, imageHeight-1-y, childColor);
-			}
+		
+		// From Sarah F. Anna K., and Alice Q.
+		if(Parameters.parameters.booleanParameter("starkPicbreeder")) {
+			// Restricts image to two brightness levels
+			float midB = (maxB-minB)/2;
+			for (int x = 0; x < imageWidth; x++) {// scans across whole image
+				for (int y = 0; y < imageHeight; y++) {
+					// Rather the use the CPPN, grab colors from the image and change the brightness
+					int originalColor = image.getRGB(x, y);
+					Color original = new Color(originalColor);
+					// Get HSB values (null means a new array is created)
+					float[] hsb = Color.RGBtoHSB(original.getRed(), original.getGreen(), original.getBlue(), null);
+					// Change brightness to 0 or 1 in comparison with mid value
+					Color childColor = Color.getHSBColor(hsb[HUE_INDEX], hsb[SATURATION_INDEX], hsb[BRIGHTNESS_INDEX] > midB ? 1 : 0);
+					image.setRGB(x, y, childColor.getRGB());
+				}
+			}		
 		}
+		
 		return image;
 	}
-	
+
 	/**
+	 * Code from Sarah Friday, Anna Krolikowski, and Alice Quintanilla from their final Spring 2019 AI project.
+	 * 
 	 * Creates a zentangled image by overlaying two patterns into the black and white areas of the
 	 * background image.
 	 * 
 	 * @param backgroundImage Image into which zentangle will be applied
 	 * @param pattern1 First zentangle pattern
 	 * @param pattern2 Second zentangle pattern
-	 * @return
+	 * @return The resulting image
 	 */
 	public static BufferedImage zentangleImages(BufferedImage backgroundImage, BufferedImage pattern1, BufferedImage pattern2) {
 		int imageWidth = backgroundImage.getWidth();
@@ -211,7 +172,7 @@ public class GraphicsUtil {
 		}
 		return image;
 	}
-
+	
 	/**
 	 * Returns adjusted image based on manipulation of an input image with a CPPN. To add
 	 * more variation, each pixel is manipulated based on the average HSB of its surrounding pixels.
@@ -229,9 +190,6 @@ public class GraphicsUtil {
 
 		float[][][] sourceHSB = new float[img.getWidth()][img.getHeight()][];
 
-		float maxB = 0;
-		float minB = 360;
-		
 		for(int x = 0; x < img.getWidth(); x++) {
 			for(int y = 0; y < img.getHeight(); y++) {
 				//get HSB from input image
@@ -262,12 +220,6 @@ public class GraphicsUtil {
 				float avgH = totalH/count;
 				float avgS = totalS/count;
 				float avgB = totalB/count;
-				if(avgB>maxB) {
-					maxB = avgB;
-				}
-				if(avgB<minB) {
-					minB = avgB;
-				}
 				float[] queriedHSB = new float[]{avgH, avgS, avgB};
 				//scale point for CPPN input
 				ILocated2D scaled = CartesianGeometricUtilities.centerAndScale(new Tuple2D(x, y), img.getWidth(), img.getHeight());
@@ -278,12 +230,11 @@ public class GraphicsUtil {
 				}			
 				n.flush(); // erase recurrent activation
 				float[] hsb = rangeRestrictHSB(n.process(remixedInputs));
-				Color childColor = Color.getHSBColor(hsb[HUE_INDEX], 0, hsb[BRIGHTNESS_INDEX]);
+				Color childColor = Color.getHSBColor(hsb[HUE_INDEX], hsb[SATURATION_INDEX], hsb[BRIGHTNESS_INDEX]);
 				// set back to RGB to draw picture to JFrame
 				remixedImage.setRGB(x, y, childColor.getRGB());
 			}
 		}
-		
 		return remixedImage;
 	}
 	
@@ -369,8 +320,8 @@ public class GraphicsUtil {
 		int RGB = img.getRGB(x, y);
 		Color c = new Color(RGB, true);
 		int r = c.getRed();
-		int g = c.getRed();
-		int b = c.getRed();
+		int g = c.getGreen();
+		int b = c.getBlue();
 		float[] HSB = Color.RGBtoHSB(r, g, b, null);
 		return HSB;
 	}
@@ -419,7 +370,7 @@ public class GraphicsUtil {
 	 */
 	public static float[] rangeRestrictHSB(double[] hsb) {
 		return new float[] { (float) FullLinearPiecewiseFunction.fullLinear(hsb[HUE_INDEX]),
-				0,
+				(float) HalfLinearPiecewiseFunction.halfLinear(hsb[SATURATION_INDEX]),
 				(float) Math.abs(FullLinearPiecewiseFunction.fullLinear(hsb[BRIGHTNESS_INDEX])) };
 	}
 
@@ -485,6 +436,43 @@ public class GraphicsUtil {
 		}
 		return image;
 	}
+	
+	/**
+	 * Takes an INDArray containing an image loaded using the native image loader
+	 * libraries associated with DL4J, and converts it into a BufferedImage.
+	 * The INDArray contains the color values split up across three channels (RGB)
+	 * and in the integer range 0-255.
+	 * @param array INDArray containing an image
+	 * @return BufferedImage 
+	 */
+//	public static BufferedImage imageFromINDArray(INDArray array) {
+//		int[] shape = array.shape();
+//		// Should the order of these be switched?
+//		int width = (int) shape[2];
+//		int height = (int) shape[3];
+//		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+//		// Copy from INDArray to BufferedImage
+//		for (int x = 0; x < width; x++) {// scans across whole image
+//			for (int y = 0; y < height; y++) {
+//				int red = array.getInt(0,2,y,x);
+//				int green = array.getInt(0,1,y,x);
+//				int blue = array.getInt(0,0,y,x);
+//				
+//				// There is a risk of colors going out of acceptable bounds when doing the neural style transfer.
+//				// The clipping here prevents that.
+//				red = Math.min(red, 255);
+//				green = Math.min(green, 255);
+//				blue = Math.min(blue, 255);
+//
+//				red = Math.max(red, 0);
+//				green = Math.max(green, 0);
+//				blue = Math.max(blue, 0);
+//				
+//				image.setRGB(x, y, new Color(red,green,blue).getRGB());
+//			}
+//		}
+//		return image;
+//	}
 
 	/**
 	 * Plots line of a designated color drawn by an input array list of doubles on a drawing panel.
@@ -633,5 +621,30 @@ public class GraphicsUtil {
 	 */
 	public static int invert(double y, double max, double min, int totalHeight) {
 		return (totalHeight - (2 * Plot.OFFSET)) - scale(y, max, min, totalHeight);
+	}
+	
+	/**
+	 * Converts a given Image into a BufferedImage
+	 * Thanks to https://stackoverflow.com/questions/13605248/java-converting-image-to-bufferedimage/13605411
+	 * @param img The Image to be converted
+	 * @return The converted BufferedImage
+	 */
+	public static BufferedImage toBufferedImage(Image img)
+	{
+	    if (img instanceof BufferedImage)
+	    {
+	        return (BufferedImage) img;
+	    }
+
+	    // Create a buffered image with transparency
+	    BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+	    // Draw the image on to the buffered image
+	    Graphics2D bGr = bimage.createGraphics();
+	    bGr.drawImage(img, 0, 0, null);
+	    bGr.dispose();
+
+	    // Return the buffered image
+	    return bimage;
 	}
 }

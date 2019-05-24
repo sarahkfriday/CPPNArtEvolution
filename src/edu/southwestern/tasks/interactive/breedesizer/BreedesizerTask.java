@@ -198,15 +198,15 @@ public class BreedesizerTask<T extends Network> extends InteractiveEvolutionTask
 		if(undo) return true; // Click must have been a bad activation checkbox choice. Skip rest
 		// Play original sound if they click the button
 		if(itemID == (MIDI_PLAY_BUTTON_INDEX)) {
-			Network[] cppns = new Network[selectedCPPNs.size()];
+			Network[] cppns = new Network[selectedItems.size()];
 			if(!justStopped) { // Pressing original button can stop playback too
 				if(!MIDIPlaybackType.isSelected()) { // action for simple MIDI playback
 					midiPlay = MIDIUtil.playMIDIWithCPPNFromString(Parameters.parameters.stringParameter("remixMIDIFile"), currentCPPN, noteLengthScale);
 				} else { // action for advanced MIDI playback
 					//read in all CPPNs from selectedCPPNS list to an array of networks
 					// Read backwards so most recent selection is present
-					for(int i = selectedCPPNs.size() - 1; i >= 0; i--) { 
-						cppns[i] = scores.get(selectedCPPNs.get(i)).individual.getPhenotype();
+					for(int i = selectedItems.size() - 1; i >= 0; i--) { 
+						cppns[i] = scores.get(selectedItems.get(i)).individual.getPhenotype();
 					}
 					midiPlay = MIDIUtil.playMIDIWithCPPNsFromString(Parameters.parameters.stringParameter("remixMIDIFile"), cppns, noteLengthScale);
 				}
@@ -314,7 +314,7 @@ public class BreedesizerTask<T extends Network> extends InteractiveEvolutionTask
 	 */
 	public static void main(String[] args) {
 		try {
-			MMNEAT.main(new String[]{"runNumber:5","randomSeed:5","trials:1","mu:16","maxGens:500","io:false","netio:false","mating:true", "fs:false", "task:edu.southwestern.tasks.interactive.breedesizer.BreedesizerTask","allowMultipleFunctions:true","ftype:0","netChangeActivationRate:0.3","cleanFrequency:-1","recurrency:false","ea:edu.southwestern.evolution.selectiveBreeding.SelectiveBreedingEA","simplifiedInteractiveInterface:false","imageWidth:2000","imageHeight:2000","imageSize:200"});
+			MMNEAT.main(new String[]{"runNumber:5","randomSeed:5","trials:1","mu:16","maxGens:500","io:false","netio:false","mating:true", "fs:false", "task:edu.southwestern.tasks.interactive.breedesizer.BreedesizerTask","allowMultipleFunctions:true","ftype:0","netChangeActivationRate:0.3","cleanFrequency:-1","recurrency:false","ea:edu.southwestern.evolution.selectiveBreeding.SelectiveBreedingEA","imageWidth:2000","imageHeight:2000","imageSize:200"});
 		} catch (FileNotFoundException | NoSuchMethodException e) {
 			e.printStackTrace();
 		}
@@ -328,17 +328,5 @@ public class BreedesizerTask<T extends Network> extends InteractiveEvolutionTask
 	@Override
 	protected String getFileExtension() {
 		return "wav";
-	}
-
-	@Override
-	protected void saveWithReflections(String file, int i) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void saveSingle(String filename, int i, int dim) {
-		// TODO Auto-generated method stub
-		
 	}
 }

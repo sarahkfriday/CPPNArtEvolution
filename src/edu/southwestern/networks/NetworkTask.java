@@ -25,6 +25,4 @@ public interface NetworkTask {
 	 * @return String array of output labels.
 	 */
 	public String[] outputLabels();
-
-	void saveSingle(String filename, int i, int dim);
 }
