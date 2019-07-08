@@ -155,8 +155,10 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 
 			// Index of item that was selected first
 			int firstSelection = this.selectedItems.get(0);
+			int secondSelection = this.selectedItems.get(1);
 			// Item that user clicked first becomes the backgorund template
 			saveSingle(waveFunctionSaveLocation+"background", firstSelection, backgroundSize);
+			saveSingle(waveFunctionSaveLocation+"background2", secondSelection, backgroundSize);
 			// All other selected items also saved
 			for(int i = 0; i < scores.size(); i++) {
 				if(chosen[i]) {
@@ -169,6 +171,7 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 					numSaved++;
 				}
 			}
+			
 
 			//use wfc to create final zentangle image, save it as zentangle.bmp
 
@@ -193,11 +196,20 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 				}
 			}							
 						
-			BufferedImage bgImage = null;
+			BufferedImage bgImage1 = null;
+			BufferedImage bgImage2 = null;
 			BufferedImage firstImage = null;
 			BufferedImage secondImage = null;
+			BufferedImage thirdImage = null;
+			BufferedImage fourthImage = null;
+			BufferedImage zentangle = null;
 			try {
-				bgImage = ImageIO.read(new File(waveFunctionSaveLocation+"/background1.bmp"));
+				bgImage1 = ImageIO.read(new File(waveFunctionSaveLocation+"/background1.bmp"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				bgImage2 = ImageIO.read(new File(waveFunctionSaveLocation+"/background21.bmp"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -211,7 +223,23 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			BufferedImage zentangle = GraphicsUtil.zentangleImages(bgImage,firstImage,secondImage);
+			if(numSaved==4) {
+				try {
+					thirdImage = ImageIO.read(new File(waveFunctionSaveLocation+"/picbreederZentangle"+3+".jpg"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				zentangle = GraphicsUtil.zentangleImages(bgImage1,bgImage2,secondImage,thirdImage);
+			} else if(numSaved==5) {
+				try {
+					thirdImage = ImageIO.read(new File(waveFunctionSaveLocation+"/picbreederZentangle"+3+".jpg"));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				zentangle = GraphicsUtil.zentangleImages(bgImage1,bgImage2,firstImage,secondImage,thirdImage);
+			} else {
+				zentangle = GraphicsUtil.zentangleImages(bgImage1,firstImage,secondImage);
+			}
 		    File outputfile = new File(waveFunctionSaveLocation+"/zentangle.png");
 		    try {
 				ImageIO.write(zentangle, "png", outputfile);

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<set size="48">
+<tiles>
+<tile name="tile2_1" symmetry="L"/>
+</tiles>
+<neighbors>
+<neighbor left="tile2_1 0" right="tile2_1 1"/>
+<neighbor left="tile2_1 2" right="tile2_1 3"/>
+</neighbors>
+</set>
