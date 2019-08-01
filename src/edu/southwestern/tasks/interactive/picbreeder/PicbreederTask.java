@@ -182,7 +182,7 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 			for(int i = 0; i < numSaved; i++) {
 				tilesToProcess.add(tileNames[i]);
 				// The partition is full, create a zentangle with WFC
-				if((i+1) % standardSize == 0) {					
+//				if((i+1) % standardSize == 0) {					
 					// Writes data.xml
 					SimpleTiledZentangleWFCModel.writeAdjacencyRules(tilesToProcess.toArray(new String[tilesToProcess.size()]));
 					// data.xml gets read in this next method
@@ -193,7 +193,7 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 						e.printStackTrace();
 					}
 					tilesToProcess.clear(); // Empty out partition
-				}
+//				}
 			}							
 						
 			BufferedImage bgImage1 = null;
