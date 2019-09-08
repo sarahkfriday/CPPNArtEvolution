@@ -46,6 +46,8 @@ import edu.southwestern.util.graphics.GraphicsUtil;
  */
 public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<T> {
 
+	public static int runNumber = 0;
+
 	public static final int CPPN_NUM_INPUTS	= 4;
 	public static final int CPPN_NUM_OUTPUTS = 3;
 
@@ -138,6 +140,7 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	 * TODO: Need to clean this code up a bit
 	 */
 	public void zentangle() {
+		runNumber++;
 		if(!BooleanUtil.any(chosen)){
 			System.out.println("Can't Zentangle if no tiles are chosen! :(");
 		} else {
