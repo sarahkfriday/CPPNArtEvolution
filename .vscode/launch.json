@@ -1,0 +1,210 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-JDOMAbout<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "JDOMAbout",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-MMNEAT<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.MMNEAT.MMNEAT",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-CombiningTWEANNCrossover<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.evolution.crossover.network.CombiningTWEANNCrossover",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Offspring<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.evolution.lineage.Offspring",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ActivationFunctions<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.networks.ActivationFunctions",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-AnimationBreederTask<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.tasks.interactive.animationbreeder.AnimationBreederTask",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-BreedesizerTask<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.tasks.interactive.breedesizer.BreedesizerTask",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Keyboard<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.tasks.interactive.breedesizer.Keyboard",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ThreeDimensionalAnimationBreederTask<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.tasks.interactive.objectbreeder.ThreeDimensionalAnimationBreederTask",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ThreeDimensionalObjectBreederTask<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.tasks.interactive.objectbreeder.ThreeDimensionalObjectBreederTask",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-OriginalPicBreederGenomeLoader<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.tasks.interactive.picbreeder.OriginalPicBreederGenomeLoader",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PicbreederConstructor<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.tasks.interactive.picbreeder.PicbreederConstructor",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-PicbreederTask<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.tasks.interactive.picbreeder.PicbreederTask",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-CombinatoricUtilities<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.util.CombinatoricUtilities",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-GifSequenceWriter<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.util.graphics.GifSequenceWriter",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-RandomNumbers<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.util.random.RandomNumbers",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ResumableRandom<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "edu.southwestern.util.random.ResumableRandom",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-jlc<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "javazoom.jl.converter.jlc",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-jlap<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "javazoom.jl.player.advanced.jlap",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-jlp<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "javazoom.jl.player.jlp",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-AccessTest<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "wox.serial.AccessTest",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ArrayListTest<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "wox.serial.ArrayListTest",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-EasyTest<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "wox.serial.EasyTest",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-EncodeBase64<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "wox.serial.EncodeBase64",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ReadTest<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "wox.serial.ReadTest",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-ShadowTest<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "wox.serial.ShadowTest",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Util<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "wox.serial.Util",
+            "projectName": "CPPNArtEvolution"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-WriterTest<CPPNArtEvolution>",
+            "request": "launch",
+            "mainClass": "wox.serial.WriterTest",
+            "projectName": "CPPNArtEvolution"
+        }
+    ]
+}

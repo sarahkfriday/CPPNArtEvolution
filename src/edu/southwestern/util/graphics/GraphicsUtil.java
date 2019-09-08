@@ -197,7 +197,7 @@ public class GraphicsUtil {
 			for (int y = 0; y < imageHeight; y++) {
 				if((backgroundImage.getRGB(x, y) == Color.BLACK.getRGB() && pattern1.getRGB(x, y) == Color.BLACK.getRGB())) {
 					image.setRGB(x, y, pattern2.getRGB(x, y));
-				} else if((backgroundImage.getRGB(x,  y) == Color.BLACK.getRGB() && pattern1.getRGB(x,  y) == Color.WHITE.getRGB()) || (backgroundImage.getRGB(x,  y) == Color.WHITE.getRGB() && pattern1.getRGB(x,  y) == Color.BLACK.getRGB())){
+				} else if((backgroundImage.getRGB(x,  y) == Color.BLACK.getRGB() && pattern1.getRGB(x,  y) != Color.BLACK.getRGB()) || (backgroundImage.getRGB(x,  y) != Color.BLACK.getRGB() && pattern1.getRGB(x,  y) == Color.BLACK.getRGB())){
 					image.setRGB(x, y, pattern3.getRGB(x, y));
 				} else {
 					image.setRGB(x,  y, pattern4.getRGB(x, y));
