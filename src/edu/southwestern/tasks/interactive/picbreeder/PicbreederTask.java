@@ -29,6 +29,7 @@ import edu.southwestern.parameters.Parameters;
 import edu.southwestern.tasks.interactive.InteractiveEvolutionTask;
 import edu.southwestern.util.BooleanUtil;
 import edu.southwestern.util.graphics.GraphicsUtil;
+import edu.southwestern.util.random.RandomNumbers;
 
 /**
  * Implementation of picbreeder that extends InteractiveEvolutionTask and uses
@@ -148,7 +149,7 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	 * TODO: Need to clean this code up a bit
 	 */
 	public void zentangle() {
-		// Make sure Zentangle directory exists
+		// Make sure zentangle directory exists
 		File d = new File("zentangle");
 		if (!d.exists()) {
 			d.mkdir();
@@ -172,56 +173,36 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 			int backgroundSize = 1440; // Hard coded image size: TODO: Use param
 			int tileSize = 48; // Hard coded: TODO: param
 
-			int bgIndex1 = (int) (Math.random() * numSelected);
-			int bgIndex2 = bgIndex1;
-			while (bgIndex2 == bgIndex1) {
-				bgIndex2 = (int) (Math.random() * numSelected);
-			}
+			// Pick two random distinct indices to determine which images make up background patterns
+			int[] bgIndices = RandomNumbers.randomDistinct(2, numSelected);			
+			int bgIndex1 = bgIndices[0];
+			int bgIndex2 = bgIndices[1];
 
 			for (int i = 0; i < numSelected; i++) {
 				if (i == bgIndex1) {
+					// Represents a template pattern
 					saveSingle(waveFunctionSaveLocation + "background", this.selectedItems.get(i), backgroundSize);
-					if (numSelected < 3) {
+					if (numSelected < 3) { // If there are only two images, one serves as a background pattern AND a tile pattern
 						String fullName = "tile" + numSaved + "_";
 						tileNames[numStored++] = fullName + "1";
 						saveSingle(waveFunctionSaveLocation + fullName, this.selectedItems.get(i), tileSize);
 						numSaved++;
 					}
 				} else if (i == bgIndex2) {
+					// A possible second template pattern
 					saveSingle(waveFunctionSaveLocation + "background2", this.selectedItems.get(i), backgroundSize);
 					String fullName = "tile" + numSaved + "_";
 					tileNames[numStored++] = fullName + "1";
 					saveSingle(waveFunctionSaveLocation + fullName, this.selectedItems.get(i), tileSize);
 					numSaved++;
 				} else {
+					// All other images used to create background tiles with WFC
 					String fullName = "tile" + numSaved + "_";
 					tileNames[numStored++] = fullName + "1";
 					saveSingle(waveFunctionSaveLocation + fullName, this.selectedItems.get(i), tileSize);
 					numSaved++;
 				}
 			}
-
-			// Index of item that was selected first
-			// int firstSelection = this.selectedItems.get(0);
-			// int secondSelection = this.selectedItems.get(1);
-			// Item that user clicked first becomes the backgorund template
-			// saveSingle(waveFunctionSaveLocation + "background", firstSelection,
-			// backgroundSize);
-			// saveSingle(waveFunctionSaveLocation + "background2", secondSelection,
-			// backgroundSize);
-			// All other selected items also saved
-			// for (int i = 0; i < scores.size(); i++) {
-			// if (chosen[i]) {
-			// // reserve names for the 4 mirroring of these tile
-			// String fullName = "tile" + numSaved + "_";
-			// tileNames[numStored++] = fullName + "1";
-
-			// saveSingle(waveFunctionSaveLocation + fullName, i, tileSize); // adds another
-			// number to the end
-			// // images are saved as reflections so they tile better
-			// numSaved++;
-			// }
-			// }
 
 			// use wfc to create final zentangle image, save it as zentangle.bmp
 
