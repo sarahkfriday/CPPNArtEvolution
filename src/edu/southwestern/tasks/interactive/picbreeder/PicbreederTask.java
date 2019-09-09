@@ -375,9 +375,14 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		// args[0] is the random seed
+		int seed = 0;
+		if(args.length == 1) {
+			seed = Integer.parseInt(args[0]);
+		}
 		try {
-			MMNEAT.main(new String[] { "runNumber:0", "randomSeed:0", "trials:1", "mu:16", "maxGens:500", "io:false",
-					"netio:false", "mating:true", "fs:false",
+			MMNEAT.main(new String[] { "runNumber:"+seed, "randomSeed:"+seed, "trials:1", "mu:16", "maxGens:500", "io:false",
+					"netio:false", "mating:true", "fs:false", "starkPicbreeder:true",
 					"task:edu.southwestern.tasks.interactive.picbreeder.PicbreederTask", "allowMultipleFunctions:true",
 					"ftype:0", "watch:false", "netChangeActivationRate:0.3", "cleanFrequency:-1",
 					"simplifiedInteractiveInterface:false", "recurrency:false", "saveAllChampions:true",
