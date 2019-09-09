@@ -148,7 +148,7 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	 */
 	public void zentangle() {
 		File d = new File("zentangle");
-		if(!d.exists()){
+		if (!d.exists()) {
 			d.mkdir();
 		}
 		int numSelected = this.selectedItems.size();
@@ -201,43 +201,46 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 			// int firstSelection = this.selectedItems.get(0);
 			// int secondSelection = this.selectedItems.get(1);
 			// Item that user clicked first becomes the backgorund template
-			// saveSingle(waveFunctionSaveLocation + "background", firstSelection, backgroundSize);
-			// saveSingle(waveFunctionSaveLocation + "background2", secondSelection, backgroundSize);
+			// saveSingle(waveFunctionSaveLocation + "background", firstSelection,
+			// backgroundSize);
+			// saveSingle(waveFunctionSaveLocation + "background2", secondSelection,
+			// backgroundSize);
 			// All other selected items also saved
 			// for (int i = 0; i < scores.size(); i++) {
-			// 	if (chosen[i]) {
-			// 		// reserve names for the 4 mirroring of these tile
-			// 		String fullName = "tile" + numSaved + "_";
-			// 		tileNames[numStored++] = fullName + "1";
+			// if (chosen[i]) {
+			// // reserve names for the 4 mirroring of these tile
+			// String fullName = "tile" + numSaved + "_";
+			// tileNames[numStored++] = fullName + "1";
 
-			// 		saveSingle(waveFunctionSaveLocation + fullName, i, tileSize); // adds another number to the end
-			// 		// images are saved as reflections so they tile better
-			// 		numSaved++;
-			// 	}
+			// saveSingle(waveFunctionSaveLocation + fullName, i, tileSize); // adds another
+			// number to the end
+			// // images are saved as reflections so they tile better
+			// numSaved++;
+			// }
 			// }
 
 			// use wfc to create final zentangle image, save it as zentangle.bmp
 
 			int numPartitions = 2; // numSaved;
-			int standardSize = numSaved / numPartitions;
+			int standardSize = tileNames.length / numPartitions;
 			ArrayList<String> tilesToProcess = new ArrayList<>();
 			int zentangleNumber = 1;
 			for (int i = 0; i < numSaved; i++) {
 				tilesToProcess.add(tileNames[i]);
 				// The partition is full, create a zentangle with WFC
-				// if((i+1) % standardSize == 0) {
-				// Writes data.xml
-				SimpleTiledZentangleWFCModel
-						.writeAdjacencyRules(tilesToProcess.toArray(new String[tilesToProcess.size()]));
-				// data.xml gets read in this next method
-				try {
-					SimpleTiledZentangle.simpleTiledZentangle(zentangleNumber++);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if (this.selectedItems.size() <= 5 || (i + 1) % standardSize == 0) {
+					// Writes data.xml
+					SimpleTiledZentangleWFCModel
+							.writeAdjacencyRules(tilesToProcess.toArray(new String[tilesToProcess.size()]));
+					// data.xml gets read in this next method
+					try {
+						SimpleTiledZentangle.simpleTiledZentangle(zentangleNumber++);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					tilesToProcess.clear(); // Empty out partition
 				}
-				tilesToProcess.clear(); // Empty out partition
-				// }
 			}
 
 			BufferedImage bgImage1 = null;
@@ -277,7 +280,8 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 			} else if (numSaved == 4) {
 				try {
 					thirdImage = ImageIO.read(new File(waveFunctionSaveLocation + "/picbreederZentangle" + 3 + ".jpg"));
-					fourthImage = ImageIO.read(new File(waveFunctionSaveLocation + "/picbreederZentangle" + 4 + ".jpg"));
+					fourthImage = ImageIO
+							.read(new File(waveFunctionSaveLocation + "/picbreederZentangle" + 4 + ".jpg"));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
