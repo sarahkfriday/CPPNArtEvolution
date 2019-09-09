@@ -204,13 +204,16 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 				}
 			}
 
+			// At this point, tileNames only stores tile images that will be used with WFC, though the array has
+			// some empty slots at then end which are null.
+			
 			// use wfc to create final zentangle image, save it as zentangle.bmp
 
-			int numPartitions = 2; // numSaved;
-			int standardSize = tileNames.length / numPartitions;
+			int numPartitions = 2;
+			int standardSize = numStored / numPartitions;
 			ArrayList<String> tilesToProcess = new ArrayList<>();
 			int zentangleNumber = 1;
-			for (int i = 0; i < numSaved; i++) {
+			for (int i = 0; i < numStored; i++) {
 				tilesToProcess.add(tileNames[i]);
 				// The partition is full, create a zentangle with WFC
 				if (this.selectedItems.size() <= 5 || (i + 1) % standardSize == 0) {
