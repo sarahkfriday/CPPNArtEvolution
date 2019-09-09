@@ -147,6 +147,10 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	 * TODO: Need to clean this code up a bit
 	 */
 	public void zentangle() {
+		File d = new File("zentangle");
+		if(!d.exists()){
+			d.mkdir();
+		}
 		int numSelected = this.selectedItems.size();
 		if (!BooleanUtil.any(chosen) || numSelected <= 1) {
 			System.out.println("Insufficient number of tiles chosen to zentangle.");
