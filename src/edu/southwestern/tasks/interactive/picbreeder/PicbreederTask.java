@@ -16,6 +16,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.aqwis.SimpleTiledZentangle;
@@ -147,13 +148,16 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	 * TODO: Need to clean this code up a bit
 	 */
 	public void zentangle() {
+		// Make sure Zentangle directory exists
 		File d = new File("zentangle");
 		if (!d.exists()) {
 			d.mkdir();
 		}
+		
 		int numSelected = this.selectedItems.size();
 		if (!BooleanUtil.any(chosen) || numSelected <= 1) {
 			System.out.println("Insufficient number of tiles chosen to zentangle.");
+			JOptionPane.showMessageDialog(null, "Insufficient number of tiles chosen to zentangle. Select at least two.", "Information", JOptionPane.INFORMATION_MESSAGE);
 		} else {
 			runNumber++;
 			String waveFunctionSaveLocation = SimpleTiledZentangle.getSaveDirectory() + "/";
