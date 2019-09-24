@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -26,6 +26,7 @@ import edu.southwestern.MMNEAT.MMNEAT;
 import edu.southwestern.evolution.genotypes.Genotype;
 import edu.southwestern.networks.Network;
 import edu.southwestern.parameters.Parameters;
+import edu.southwestern.scores.Score;
 import edu.southwestern.tasks.interactive.InteractiveEvolutionTask;
 import edu.southwestern.util.BooleanUtil;
 import edu.southwestern.util.graphics.GraphicsUtil;
@@ -128,7 +129,7 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	 * @param i
 	 * @param dim
 	 */
-	public void saveSingle(String filename, int i, int dim) {
+	public static <T> void saveSingle(String filename, int i, int dim, ArrayList<Score<T>> scores, double[] inputMultipliers) {
 		// Use of imageHeight and imageWidth allows saving a higher quality image than
 		// is on the button
 		BufferedImage toSave1 = GraphicsUtil.imageFromCPPN((Network) scores.get(i).individual.getPhenotype(), dim, dim,
@@ -149,13 +150,17 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	 * TODO: Need to clean this code up a bit
 	 */
 	public void zentangle() {
+		zentangle(this.selectedItems, this.chosen, scores, inputMultipliers);
+	}
+
+	public static <T> void zentangle(LinkedList<Integer> selectedItems, boolean[] chosen, ArrayList<Score<T>> scores, double[] inputMultipliers) {
 		// Make sure zentangle directory exists
 		File d = new File("zentangle");
 		if (!d.exists()) {
 			d.mkdir();
 		}
 		
-		int numSelected = this.selectedItems.size();
+		int numSelected = selectedItems.size();
 		if (!BooleanUtil.any(chosen) || numSelected <= 1) {
 			System.out.println("Insufficient number of tiles chosen to zentangle.");
 			JOptionPane.showMessageDialog(null, "Insufficient number of tiles chosen to zentangle. Select at least two.", "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -181,25 +186,25 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 			for (int i = 0; i < numSelected; i++) {
 				if (i == bgIndex1) {
 					// Represents a template pattern
-					saveSingle(waveFunctionSaveLocation + "background", this.selectedItems.get(i), backgroundSize);
+					saveSingle(waveFunctionSaveLocation + "background", selectedItems.get(i), backgroundSize, scores, inputMultipliers);
 					if (numSelected < 3) { // If there are only two images, one serves as a background pattern AND a tile pattern
 						String fullName = "tile" + numSaved + "_";
 						tileNames[numStored++] = fullName + "1";
-						saveSingle(waveFunctionSaveLocation + fullName, this.selectedItems.get(i), tileSize);
+						saveSingle(waveFunctionSaveLocation + fullName, selectedItems.get(i), tileSize, scores, inputMultipliers);
 						numSaved++;
 					}
 				} else if (i == bgIndex2) {
 					// A possible second template pattern
-					saveSingle(waveFunctionSaveLocation + "background2", this.selectedItems.get(i), backgroundSize);
+					saveSingle(waveFunctionSaveLocation + "background2", selectedItems.get(i), backgroundSize, scores, inputMultipliers);
 					String fullName = "tile" + numSaved + "_";
 					tileNames[numStored++] = fullName + "1";
-					saveSingle(waveFunctionSaveLocation + fullName, this.selectedItems.get(i), tileSize);
+					saveSingle(waveFunctionSaveLocation + fullName, selectedItems.get(i), tileSize, scores, inputMultipliers);
 					numSaved++;
 				} else {
 					// All other images used to create background tiles with WFC
 					String fullName = "tile" + numSaved + "_";
 					tileNames[numStored++] = fullName + "1";
-					saveSingle(waveFunctionSaveLocation + fullName, this.selectedItems.get(i), tileSize);
+					saveSingle(waveFunctionSaveLocation + fullName, selectedItems.get(i), tileSize, scores, inputMultipliers);
 					numSaved++;
 				}
 			}
@@ -216,7 +221,7 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 			for (int i = 0; i < numStored; i++) {
 				tilesToProcess.add(tileNames[i]);
 				// The partition is full, create a zentangle with WFC
-				if (this.selectedItems.size() <= 5 || (i + 1) % standardSize == 0) {
+				if (selectedItems.size() <= 5 || (i + 1) % standardSize == 0) {
 					// Writes data.xml
 					SimpleTiledZentangleWFCModel
 							.writeAdjacencyRules(tilesToProcess.toArray(new String[tilesToProcess.size()]));
@@ -224,7 +229,6 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 					try {
 						SimpleTiledZentangle.simpleTiledZentangle(zentangleNumber++);
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					tilesToProcess.clear(); // Empty out partition
