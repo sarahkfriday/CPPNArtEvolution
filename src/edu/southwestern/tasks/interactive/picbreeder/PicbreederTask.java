@@ -126,22 +126,10 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	 * deserves its own method.
 	 * 
 	 * @param filename
-	 * @param i
 	 * @param dim
+	 * @param phenotype
+	 * @param inputMultipliers
 	 */
-	// public static <T> void saveSingle(String filename, int i, int dim,
-	// ArrayList<Score<T>> scores, double[] inputMultipliers) {
-	// // Use of imageHeight and imageWidth allows saving a higher quality image
-	// than
-	// // is on the button
-	// BufferedImage toSave1 = GraphicsUtil.imageFromCPPN((Network)
-	// scores.get(i).individual.getPhenotype(), dim, dim,
-	// inputMultipliers);
-	// String filename1 = filename + "1.bmp";
-	// GraphicsUtil.saveImage(toSave1, filename1);
-
-	// System.out.println("image " + filename1 + " was saved successfully");
-	// }
 
 	public static <T> void saveSingle(String filename, int dim, T phenotype, double[] inputMultipliers) {
 		// Use of imageHeight and imageWidth allows saving a higher quality image than
