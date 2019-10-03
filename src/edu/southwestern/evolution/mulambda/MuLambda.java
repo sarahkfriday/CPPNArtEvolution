@@ -249,6 +249,28 @@ public abstract class MuLambda<T> implements SinglePopulationGenerationalEA<T> {
 	}
 
 	/**
+	 * Cleanup needed at end of evolution
+	 * 
+	 * @param population
+	 *            Final population
+	 */
+	@Override
+	public void close(ArrayList<Genotype<T>> population) {
+		// Evaluate final parents (haven't technically been evaluated yet)
+		ArrayList<Score<T>> parentScores = task.evaluateAll(population);
+		//logParentInfo(parentScores);
+		if (writeOutput) {
+//			parentLog.close();
+//			if (childLog != null) {
+//				childLog.close();
+//			}
+			if (modeLog != null) {
+				modeLog.close();
+			}
+		}
+	}
+	
+	/**
 	 * Because each parent is evaluated once, and each child is evaluated once
 	 *
 	 * @return number of evaluations per generation

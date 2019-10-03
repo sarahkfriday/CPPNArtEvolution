@@ -27,6 +27,7 @@ import edu.southwestern.parameters.CommonConstants;
 import edu.southwestern.parameters.Parameters;
 import edu.southwestern.tasks.Task;
 import edu.southwestern.tasks.interactive.InteractiveEvolutionTask;
+import edu.southwestern.tasks.zentangle.ZentangleTask;
 import edu.southwestern.util.ClassCreation;
 import edu.southwestern.util.file.FileUtilities;
 import edu.southwestern.util.random.RandomGenerator;
@@ -290,6 +291,10 @@ public class MMNEAT {
 				System.out.println("set up Interactive Evolution Task");
 				InteractiveEvolutionTask temp = (InteractiveEvolutionTask) task;
 				setNNInputParameters(temp.numCPPNInputs(), temp.numCPPNOutputs());
+			} else if (task instanceof ZentangleTask) {
+				System.out.println("Setup Zentangle Task");
+				ZentangleTask t = (ZentangleTask) task;
+				setNNInputParameters(t.numInputs(), t.numOutputs());
 			} else if (task == null) {
 				// this else statement should only happen for JUnit testing cases.
 				// Some default network setup is needed.
