@@ -3,14 +3,11 @@ package edu.southwestern.tasks.zentangle;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import edu.southwestern.MMNEAT.MMNEAT;
 import edu.southwestern.evolution.genotypes.Genotype;
-import edu.southwestern.evolution.genotypes.TWEANNGenotype;
 import edu.southwestern.networks.Network;
 import edu.southwestern.networks.NetworkTask;
-import edu.southwestern.networks.TWEANN;
 import edu.southwestern.parameters.CommonConstants;
 import edu.southwestern.parameters.Parameters;
 import edu.southwestern.scores.Score;
@@ -38,6 +35,12 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 	public ZentangleTask() {
 	}
 
+	public ArrayList<Score<T>> evaluateAll(ArrayList<Genotype<T>> population) {
+		ArrayList<Score<T>> result = super.evaluateAll(population);
+		
+		return result;
+	}
+	
 	@Override
 	public Score<T> evaluate(Genotype<T> individual) {
 		if (CommonConstants.watch) {
@@ -140,92 +143,6 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 //			}
 //		}
 //		return results;
-	}
-
-	public static void draw8RandomImages() {
-		randomCPPNimage(true, 400);
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 3; j++) {
-				randomCPPNimage(false, i * 300, j * 300, 100);
-			}
-		}
-	}
-
-	public static DrawingPanel randomCPPNimage(boolean offerToSave, int size) {
-		return randomCPPNimage(offerToSave, 0, 0, size);
-	}
-
-	public static void testImageConsistency() {
-		final int NUM_MUTATIONS = 200;
-
-		TWEANNGenotype toDraw = new TWEANNGenotype(4, 3, false, 0, 1, 0);
-		for (int i = 0; i < NUM_MUTATIONS; i++) {
-			toDraw.mutate();
-		}
-		TWEANN n = toDraw.getPhenotype();
-		int SMALL = 100;
-		BufferedImage small = GraphicsUtil.imageFromCPPN(n, SMALL, SMALL);
-		DrawingPanel smallPanel = GraphicsUtil.drawImage(small, "small", SMALL, SMALL);
-		smallPanel.setLocation(0, 0);
-		int MEDIUM = 300;
-		BufferedImage medium = GraphicsUtil.imageFromCPPN(n, MEDIUM, MEDIUM);
-		DrawingPanel mediumPanel = GraphicsUtil.drawImage(medium, "medium", MEDIUM, MEDIUM);
-		mediumPanel.setLocation(SMALL, 0);
-
-		int LARGE = 600;
-		BufferedImage large = GraphicsUtil.imageFromCPPN(n, LARGE, LARGE);
-		DrawingPanel largePanel = GraphicsUtil.drawImage(large, "large", LARGE, LARGE);
-		largePanel.setLocation(SMALL + MEDIUM, 0);
-	}
-
-	/**
-	 * Creates a random image of given size and numMutations and puts it in
-	 * JFrame with option to save image and network as a bmp
-	 *
-	 * @param offerToSave
-	 *            Whether to pause and ask to save image
-	 * @param x
-	 *            x-coordinate to place image window
-	 * @param y
-	 *            y-coordinate to place image window
-	 * @return panel on which image was drawn
-	 */
-	public static DrawingPanel randomCPPNimage(boolean offerToSave, int x, int y, int size) {
-
-		final int NUM_MUTATIONS = 200;
-
-		TWEANNGenotype toDraw = new TWEANNGenotype(4, 3, false, 0, 1, 0);
-		for (int i = 0; i < NUM_MUTATIONS; i++) {
-			toDraw.mutate();
-		}
-		TWEANN n = toDraw.getPhenotype();
-		BufferedImage child = GraphicsUtil.imageFromCPPN(n, size, size);
-
-		System.out.println(n.toString());
-
-		DrawingPanel childPanel = GraphicsUtil.drawImage(child, "output", size, size);
-		childPanel.setLocation(x, y);
-
-		if (offerToSave) {
-			DrawingPanel network = new DrawingPanel(size, size, "network");
-			n.draw(network);
-			network.setLocation(300, 0);
-			Scanner scan = MiscUtil.CONSOLE;
-			System.out.println("would you like to save this image? y/n");
-			if (scan.next().equals("y")) {
-				System.out.println("enter filename");
-				String filename = scan.next();
-				childPanel.save(filename + ".bmp");
-				System.out.println("save network? y/n");
-				if (scan.next().equals("y")) {
-					network.save(filename + "network.bmp");
-				}
-			}
-			network.dispose();
-			childPanel.dispose();
-			System.exit(0);
-		}
-		return childPanel;
 	}
 
 	@Override
