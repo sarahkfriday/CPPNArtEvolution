@@ -3,7 +3,7 @@ package edu.southwestern.tasks.zentangle;
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
+import java.util.Arrays;
 import edu.southwestern.MMNEAT.MMNEAT;
 import edu.southwestern.evolution.genotypes.Genotype;
 import edu.southwestern.networks.Network;
@@ -12,10 +12,12 @@ import edu.southwestern.parameters.CommonConstants;
 import edu.southwestern.parameters.Parameters;
 import edu.southwestern.scores.Score;
 import edu.southwestern.tasks.LonerTask;
+import edu.southwestern.tasks.interactive.picbreeder.PicbreederTask;
 import edu.southwestern.util.MiscUtil;
 import edu.southwestern.util.graphics.DrawingPanel;
 import edu.southwestern.util.graphics.GraphicsUtil;
 import edu.southwestern.util.random.RandomNumbers;
+import edu.southwestern.evolution.SinglePopulationGenerationalEA;
 
 /**
  * Evolve CPPN images randomly to create random Zentangles
@@ -37,7 +39,28 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 
 	public ArrayList<Score<T>> evaluateAll(ArrayList<Genotype<T>> population) {
 		ArrayList<Score<T>> result = super.evaluateAll(population);
+		// Population finished being evaluated, so make a Zentangle
+		@SuppressWarnings("unchecked")
+		String directory = "zentangle/gen"+((SinglePopulationGenerationalEA<T>) MMNEAT.ea).currentGeneration();
+		double[] inputMultipliers = new double[this.numInputs()];
+		Arrays.fill(inputMultipliers, 1); // All inputs turned on
+		// Add some random tiles to make a zentangle with
+		// Need at least two tiles
+		int howMany = RandomNumbers.randomGenerator.nextInt(5)+2;
+		ArrayList<Genotype<T>> randomGenotypes = RandomNumbers.randomChoose(population, howMany);
+		ArrayList<T> chosenTiles = new ArrayList<T>(howMany);
+		// Extract the phenotypes
+		for(int i = 0; i < howMany; i++) {
+			chosenTiles.add(randomGenotypes.get(i).getPhenotype());
+		}
+		// Create Zentangle!
+		PicbreederTask.zentangle(directory, chosenTiles, inputMultipliers);
 		
+		// Pause to look at Zentangle
+		// Replace this with command line option later.
+		MiscUtil.waitForReadStringAndEnterKeyPress();
+		
+		// Return evaluated population
 		return result;
 	}
 	
@@ -166,7 +189,7 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 			MMNEAT.main(new String[] { "runNumber:" + seed, "randomSeed:" + seed, "trials:1", "mu:16", "maxGens:500",
 					"io:false", "netio:false", "mating:true", "fs:false", "starkPicbreeder:true",
 					"task:edu.southwestern.tasks.zentangle.ZentangleTask", "allowMultipleFunctions:true",
-					"ftype:0", "watch:true", "netChangeActivationRate:0.3", "cleanFrequency:-1",
+					"ftype:0", "watch:false", "netChangeActivationRate:0.3", "cleanFrequency:-1",
 					"simplifiedInteractiveInterface:false", "recurrency:false", "saveAllChampions:true",
 					"cleanOldNetworks:false", "ea:edu.southwestern.evolution.nsga2.NSGA2",
 					"imageWidth:2000", "imageHeight:2000", "imageSize:200", "includeFullSigmoidFunction:true",
