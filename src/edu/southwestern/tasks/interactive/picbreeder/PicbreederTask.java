@@ -178,14 +178,14 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 	 */
 	public void zentangle() {
 		ArrayList<T> chosenTiles = getPhenotypes(scores, this.chosen, this.selectedItems);
-		zentangle(chosenTiles, inputMultipliers);
+		zentangle(SimpleTiledZentangle.getSaveDirectory(), chosenTiles, inputMultipliers);
 	}
 
-	public static <T> void zentangle(ArrayList<T> chosenTiles, double[] inputMultipliers) {
+	public static <T> void zentangle(String directory, ArrayList<T> chosenTiles, double[] inputMultipliers) {
 		// Make sure zentangle directory exists
-		File d = new File("zentangle");
+		File d = new File(directory);
 		if (!d.exists()) {
-			d.mkdir();
+			d.mkdirs(); // Make all recursive directories
 		}
 
 		if (chosenTiles == null) {
@@ -196,7 +196,7 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 		} else {
 			int numSelected = chosenTiles.size();
 			runNumber++;
-			String waveFunctionSaveLocation = SimpleTiledZentangle.getSaveDirectory() + "/";
+			String waveFunctionSaveLocation = directory + "/";
 			File dir = new File(waveFunctionSaveLocation);
 			if (!dir.exists()) { // Create save directory if it does not exist
 				dir.mkdir();
@@ -259,10 +259,10 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 				if (chosenTiles.size() <= 5 || (i + 1) % standardSize == 0) {
 					// Writes data.xml
 					SimpleTiledZentangleWFCModel
-							.writeAdjacencyRules(tilesToProcess.toArray(new String[tilesToProcess.size()]));
+							.writeAdjacencyRules(directory, tilesToProcess.toArray(new String[tilesToProcess.size()]));
 					// data.xml gets read in this next method
 					try {
-						SimpleTiledZentangle.simpleTiledZentangle(zentangleNumber++);
+						SimpleTiledZentangle.simpleTiledZentangle(directory, zentangleNumber++);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
