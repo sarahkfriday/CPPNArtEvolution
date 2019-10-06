@@ -105,6 +105,9 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 		BufferedImage smallImage = GraphicsUtil.imageFromCPPN(n, 50, 50);
 		// Random fitness score
 		Score<T> result = new Score<>(individual, fitness(smallImage), getBehaviorVector());
+		if(CommonConstants.watch) {
+			System.out.println("Fitness:" + Arrays.toString(result.scores));
+		}
 		return result;
 	}
 
@@ -219,7 +222,8 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 					"includeFullGaussFunction:true", "includeCosineFunction:true", "includeGaussFunction:false",
 					"includeIdFunction:true", "includeTriangleWaveFunction:false", "includeSquareWaveFunction:false",
 					"includeFullSawtoothFunction:false", "includeSigmoidFunction:false", "includeAbsValFunction:false",
-					"includeSawtoothFunction:false","overrideImageSize:true","imageWidth:500","imageHeight:500" });
+					"includeSawtoothFunction:false","overrideImageSize:true","imageWidth:500","imageHeight:500",
+					"imageFitness:edu.southwestern.tasks.zentangle.HalfBlackImageFitness"});
 		} catch (FileNotFoundException | NoSuchMethodException e) {
 			e.printStackTrace();
 		}	
