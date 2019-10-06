@@ -172,7 +172,7 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 
 	/**
 	 * gets behavior vector for behavioral diversity algorithm
-         * @return The H, S, and B values for each pixel in the image
+     * @return The H, S, and B values for each pixel in the image
 	 */
 	@Override
 	public ArrayList<Double> getBehaviorVector() {
@@ -224,7 +224,9 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 					"includeIdFunction:true", "includeTriangleWaveFunction:false", "includeSquareWaveFunction:false",
 					"includeFullSawtoothFunction:false", "includeSigmoidFunction:false", "includeAbsValFunction:false",
 					"includeSawtoothFunction:false","overrideImageSize:true","imageWidth:500","imageHeight:500",
-					"imageFitness:edu.southwestern.tasks.zentangle.HalfBlackAndColorsImageFitness"});
+					"imageFitness:edu.southwestern.tasks.zentangle.RandomImageFitness"});
+					//"imageFitness:edu.southwestern.tasks.zentangle.HalfBlackAndColorsImageFitness"});
+					//"imageFitness:edu.southwestern.tasks.zentangle.HalfBlackImageFitness"});
 		} catch (FileNotFoundException | NoSuchMethodException e) {
 			e.printStackTrace();
 		}	
