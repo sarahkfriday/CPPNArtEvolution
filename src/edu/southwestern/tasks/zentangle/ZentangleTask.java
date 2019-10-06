@@ -1,6 +1,7 @@
 package edu.southwestern.tasks.zentangle;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +30,7 @@ import edu.southwestern.evolution.SinglePopulationGenerationalEA;
 public class ZentangleTask<T extends Network> extends LonerTask<T> implements NetworkTask {
 
 	private static final int IMAGE_PLACEMENT = 200;
+	private static final int ZENTANGLES_PER_GENERATION = 3; // Make command line param?
 	public int imageHeight, imageWidth;
 
 	/**
@@ -42,23 +44,31 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 		// Population finished being evaluated, so make a Zentangle
 		@SuppressWarnings("unchecked")
 		String directory = "zentangle/gen"+((SinglePopulationGenerationalEA<T>) MMNEAT.ea).currentGeneration();
+		if(new File(directory).exists()) { // Made by parents ... we are in child group
+			directory += "/children";
+		} else { // New directory? Then this is parent population
+			directory += "/parents";
+		}
 		double[] inputMultipliers = new double[this.numInputs()];
 		Arrays.fill(inputMultipliers, 1); // All inputs turned on
-		// Add some random tiles to make a zentangle with
-		// Need at least two tiles
-		int howMany = RandomNumbers.randomGenerator.nextInt(5)+2;
-		ArrayList<Genotype<T>> randomGenotypes = RandomNumbers.randomChoose(population, howMany);
-		ArrayList<T> chosenTiles = new ArrayList<T>(howMany);
-		// Extract the phenotypes
-		for(int i = 0; i < howMany; i++) {
-			chosenTiles.add(randomGenotypes.get(i).getPhenotype());
-		}
-		// Create Zentangle!
-		PicbreederTask.zentangle(directory, chosenTiles, inputMultipliers);
+
 		
+		for(int j = 0; j < ZENTANGLES_PER_GENERATION; j++) {
+			// Add some random tiles to make a zentangle with
+			// Need at least two tiles
+			int howMany = RandomNumbers.randomGenerator.nextInt(5)+2;
+			ArrayList<Genotype<T>> randomGenotypes = RandomNumbers.randomChoose(population, howMany);
+			ArrayList<T> chosenTiles = new ArrayList<T>(howMany);
+			// Extract the phenotypes
+			for(int i = 0; i < howMany; i++) {
+				chosenTiles.add(randomGenotypes.get(i).getPhenotype());
+			}
+			// Create Zentangle!
+			PicbreederTask.zentangle(directory+"/example"+j, chosenTiles, inputMultipliers);			
+		}
 		// Pause to look at Zentangle
 		// Replace this with command line option later.
-		MiscUtil.waitForReadStringAndEnterKeyPress();
+		//MiscUtil.waitForReadStringAndEnterKeyPress();
 		
 		// Return evaluated population
 		return result;
@@ -186,7 +196,7 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 			seed = Integer.parseInt(args[0]);
 		}
 		try {
-			MMNEAT.main(new String[] { "runNumber:" + seed, "randomSeed:" + seed, "trials:1", "mu:16", "maxGens:500",
+			MMNEAT.main(new String[] { "runNumber:" + seed, "randomSeed:" + seed, "trials:1", "mu:16", "maxGens:50",
 					"io:false", "netio:false", "mating:true", "fs:false", "starkPicbreeder:true",
 					"task:edu.southwestern.tasks.zentangle.ZentangleTask", "allowMultipleFunctions:true",
 					"ftype:0", "watch:false", "netChangeActivationRate:0.3", "cleanFrequency:-1",

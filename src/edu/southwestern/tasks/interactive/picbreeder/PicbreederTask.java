@@ -25,6 +25,7 @@ import com.aqwis.models.SimpleTiledZentangleWFCModel;
 import edu.southwestern.MMNEAT.MMNEAT;
 import edu.southwestern.evolution.genotypes.Genotype;
 import edu.southwestern.networks.Network;
+import edu.southwestern.parameters.CommonConstants;
 import edu.southwestern.parameters.Parameters;
 import edu.southwestern.scores.Score;
 import edu.southwestern.tasks.interactive.InteractiveEvolutionTask;
@@ -326,13 +327,14 @@ public class PicbreederTask<T extends Network> extends InteractiveEvolutionTask<
 
 			System.out.println("image was saved successfully");
 
-			try {
-				Desktop.getDesktop().open(outputfile);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (CommonConstants.watch) {
+				try {
+					Desktop.getDesktop().open(outputfile);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-
 		}
 	}
 
