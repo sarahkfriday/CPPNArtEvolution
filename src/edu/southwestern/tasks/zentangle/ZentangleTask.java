@@ -212,9 +212,9 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 			seed = Integer.parseInt(args[0]);
 		}
 		try {
-			MMNEAT.main(new String[] { "base:zentangles", "runNumber:" + seed, "randomSeed:" + seed, "trials:1", "mu:16", "maxGens:50",
-					"log:Zentangles-HalfBlack", "saveTo:HalfBlack",
-					"io:true", "netio:true", "mating:true", "fs:false", "starkPicbreeder:true",
+			MMNEAT.main(new String[] { "runNumber:" + seed, "randomSeed:" + seed, "trials:1", "mu:16", "maxGens:50",
+					//"base:zentangles", "log:Zentangles-HalfBlack", "saveTo:HalfBlack",
+					"io:false", "netio:false", "mating:true", "fs:false", "starkPicbreeder:true",
 					"task:edu.southwestern.tasks.zentangle.ZentangleTask", "allowMultipleFunctions:true",
 					"ftype:0", "watch:false", "netChangeActivationRate:0.3", "cleanFrequency:-1",
 					"simplifiedInteractiveInterface:false", "recurrency:false", "saveAllChampions:true",
@@ -224,7 +224,7 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 					"includeIdFunction:true", "includeTriangleWaveFunction:false", "includeSquareWaveFunction:false",
 					"includeFullSawtoothFunction:false", "includeSigmoidFunction:false", "includeAbsValFunction:false",
 					"includeSawtoothFunction:false","overrideImageSize:true","imageWidth:500","imageHeight:500",
-					"imageFitness:edu.southwestern.tasks.zentangle.HalfBlackImageFitness"});
+					"imageFitness:edu.southwestern.tasks.zentangle.HalfBlackAndColorsImageFitness"});
 		} catch (FileNotFoundException | NoSuchMethodException e) {
 			e.printStackTrace();
 		}	
