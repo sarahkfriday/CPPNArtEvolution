@@ -207,7 +207,7 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 	
 	public static void main(String[] args) {
 		// args[0] is the random seed
-		int seed = 0;
+		int seed = (int)(Math.random()*100);
 		if (args.length == 1) {
 			seed = Integer.parseInt(args[0]);
 		}
