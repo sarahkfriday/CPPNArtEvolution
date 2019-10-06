@@ -13,6 +13,7 @@ import edu.southwestern.evolution.genotypes.TWEANNGenotype;
 import edu.southwestern.experiment.evolution.LimitedSinglePopulationGenerationalEAExperiment;
 import edu.southwestern.networks.ActivationFunctions;
 import edu.southwestern.tasks.interactive.breedesizer.Keyboard;
+import edu.southwestern.tasks.zentangle.RandomImageFitness;
 import edu.southwestern.util.random.GaussianGenerator;
 import edu.southwestern.util.sound.SoundUtilExamples;
 import edu.southwestern.util.stats.Average;
@@ -812,6 +813,7 @@ public class Parameters {
 		// Class options
 		//classOptions.add("behaviorCharacterization", DomainSpecificCharacterization.class, "Type of behavior characterization used for Behavioral Diversity calculation");
 		classOptions.add("boardGame", null, "Board Game being played by BoardGameTask");
+		classOptions.add("imageFitness", RandomImageFitness.class, "Fitness function for evaluating images");
 		//classOptions.add("boardGameFeatureExtractor", TwoDimensionalRawBoardGameFeatureExtractor.class, "Feature Extractor used by the NNBoardGamePlayer");
 		//classOptions.add("boardGameOpponent", BoardGamePlayerRandom.class, "Board game Opponent being played against");
 		//classOptions.add("boardGameOpponentHeuristic", PieceDifferentialBoardGameHeuristic.class, "Board game heuristic used by the Opponent");

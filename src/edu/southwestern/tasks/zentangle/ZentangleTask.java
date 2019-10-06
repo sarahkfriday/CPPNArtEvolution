@@ -14,6 +14,7 @@ import edu.southwestern.parameters.Parameters;
 import edu.southwestern.scores.Score;
 import edu.southwestern.tasks.LonerTask;
 import edu.southwestern.tasks.interactive.picbreeder.PicbreederTask;
+import edu.southwestern.util.ClassCreation;
 import edu.southwestern.util.MiscUtil;
 import edu.southwestern.util.graphics.DrawingPanel;
 import edu.southwestern.util.graphics.GraphicsUtil;
@@ -32,11 +33,19 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 	private static final int IMAGE_PLACEMENT = 200;
 	private static final int ZENTANGLES_PER_GENERATION = 3; // Make command line param?
 	public int imageHeight, imageWidth;
+	private ImageFitness fitnessFunction = null;
 
 	/**
 	 * Default task constructor
 	 */
 	public ZentangleTask() {
+		try {
+			fitnessFunction = (ImageFitness) ClassCreation.createObject("imageFitness");
+		} catch (NoSuchMethodException e) {
+			System.out.println("imageFitness not properly defined");
+			System.exit(1);
+			e.printStackTrace();
+		}
 	}
 
 	public ArrayList<Score<T>> evaluateAll(ArrayList<Genotype<T>> population) {
@@ -76,8 +85,8 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 	
 	@Override
 	public Score<T> evaluate(Genotype<T> individual) {
+		Network n = individual.getPhenotype();
 		if (CommonConstants.watch) {
-			Network n = individual.getPhenotype();
 			BufferedImage child;
 			int drawWidth = imageWidth;
 			int drawHeight = imageHeight;
@@ -92,11 +101,15 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 			considerSavingImage(childPanel);
 			childPanel.dispose();
 		}
-		// Too many outputs to print to console. Don't want to watch.
-		
+		// Reduce evaluation time by creating small images
+		BufferedImage smallImage = GraphicsUtil.imageFromCPPN(n, 50, 50);
 		// Random fitness score
-		Score<T> result = new Score<>(individual, new double[] {RandomNumbers.randomGenerator.nextDouble()}, getBehaviorVector());
+		Score<T> result = new Score<>(individual, fitness(smallImage), getBehaviorVector());
 		return result;
+	}
+
+	private double[] fitness(BufferedImage smallImage) {
+		return fitnessFunction.fitness(smallImage);
 	}
 
 	/**
@@ -180,7 +193,7 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 
 	@Override
 	public int numObjectives() {
-		return 1;
+		return fitnessFunction.numberObjectives();
 	}
 
 	@Override
