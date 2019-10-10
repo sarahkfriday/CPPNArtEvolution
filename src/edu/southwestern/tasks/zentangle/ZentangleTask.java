@@ -225,7 +225,7 @@ public class ZentangleTask<T extends Network> extends LonerTask<T> implements Ne
 					"includeFullSawtoothFunction:false", "includeSigmoidFunction:false", "includeAbsValFunction:false",
 					"includeSawtoothFunction:false","overrideImageSize:true","imageWidth:500","imageHeight:500",
 					//"imageFitness:edu.southwestern.tasks.zentangle.RandomImageFitness"});
-					"imageFitness:HalfBlackAndColorsInLightPortionImageFitness"});
+					"imageFitness:edu.southwestern.tasks.zentangle.HalfBlackAndColorsInLightPortionImageFitness"});
 					//"imageFitness:edu.southwestern.tasks.zentangle.HalfBlackAndColorsImageFitness"});
 					//"imageFitness:edu.southwestern.tasks.zentangle.HalfBlackImageFitness"});
 		} catch (FileNotFoundException | NoSuchMethodException e) {
