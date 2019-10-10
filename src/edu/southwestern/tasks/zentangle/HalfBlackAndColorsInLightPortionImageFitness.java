@@ -49,9 +49,9 @@ public class HalfBlackAndColorsInLightPortionImageFitness implements ImageFitnes
 		// Only get color percentage within the non-black region
 		double notBlackCount = total - blackCount;
 		
-		double redWithoutOthers = (redSum - blueSum - greenSum)/notBlackCount;
-		double blueWithoutOthers = (blueSum - redSum - greenSum)/notBlackCount;
-		double greenWithoutOthers = (greenSum - redSum - blueSum)/notBlackCount;
+		double redWithoutOthers = (redSum - blueSum - greenSum)/(notBlackCount+0.0001);
+		double blueWithoutOthers = (blueSum - redSum - greenSum)/(notBlackCount+0.0001);
+		double greenWithoutOthers = (greenSum - redSum - blueSum)/(notBlackCount+0.0001);
 		
 		return new double[] {-distFrom50,redWithoutOthers,blueWithoutOthers,greenWithoutOthers};
 	}
