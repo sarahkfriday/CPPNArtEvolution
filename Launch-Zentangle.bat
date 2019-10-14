@@ -1,1 +1,0 @@
-java -jar Zentangle.jar 0
