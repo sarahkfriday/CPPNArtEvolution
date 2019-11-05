@@ -992,7 +992,7 @@ public abstract class InteractiveEvolutionTask<T> implements SinglePopulationTas
 	@Override
 	public void stateChanged(ChangeEvent e) {
 		JSlider source = (JSlider)e.getSource();
-		SelectiveBreedingEA.MUTATION_RATE = source.getValue();
+		SelectiveBreedingEA.mutationChances = source.getValue();
 
 	}
 	/**
