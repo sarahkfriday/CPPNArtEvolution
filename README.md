@@ -1,25 +1,25 @@
 # Quantum Zentanglement
 
-How to make a Zentangle:
-## Batch Files: 
+## How to make a Zentangle:
+### Batch Files: 
 * Launch-Zentangle-HB.bat : Automatically generate using the half-black fitness scheme
 * Launch-Zentangle-HB3Color.bat : Automatically generate using the half-black-3-color fitness scheme
 * Launch-Zentangle-Interactive.bat : Evolve interactively using Picbreeder
 * Launch-Zentangle-RandomBW.bat : Automatically generate using the random fitness scheme in black-white only
 * Launch-Zentangle-RandomColor.bat : Automatically generate using the random fitness scheme in color
 
-## Windows: 
+### Windows 
 * Double click on the Launch-Zentangle-Interactive.bat to create Zentangles interactively or choose any of the other 4 batch 		   files with the Launch prefix to automatically generate Zentangles using the fitness schemes random, half-black, half-black-3-color
 
-## Mac/Linux/Unix: 
+### Mac/Linux/Unix 
 * Run bash Launch-Zentangle-Interactive.bat from the terminal to create Zentangles interactively or choose any of the
   other 4 batch files with the Launch prefix to automatically generate Zentangles using the fitness schemes random, half-black,
   half-black-3-color
 
-Other: 
+### Other
 * Run PicbreederTask.java from the terminal or an IDE
 
-## Interactive Evolution:
+### Interactive Evolution
 * Evolve images until you find some that you think would make interesting patterns
 * Toggle between mathematical functions and color settings such as stark and black-white
 * Increase or decrease the mutation rate for more change between generations
