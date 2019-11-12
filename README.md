@@ -1,4 +1,4 @@
-# CPPNArtEvolutionandWFC
+# Quantum Zentanglement
 
 How to make a Zentangle:
 * run PicbreederTask.java
