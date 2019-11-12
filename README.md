@@ -1,14 +1,14 @@
 # CPPNArtEvolutionandWFC
 
 How to make a Zentangle:
-	* run PicbreederTask.java
-	* evolve images until you find some that you think would make interesting patterns
-	* select 3 images and press zentangle! it may take take a few moments.
-	* the first selected image becomes the background 
-		(first from top-left to bottom-right, NOT first chronologically)
-	* the remaining two images will fill be converted into a pattern by WFC and used to fill
-		the white and black spaces from the background image.
-	* your image should appear in a new window :)
+* run PicbreederTask.java
+* evolve images until you find some that you think would make interesting patterns
+* select 3 images and press zentangle! it may take take a few moments.
+* the first selected image becomes the background 
+  (first from top-left to bottom-right, NOT first chronologically)
+* the remaining two images will fill be converted into a pattern by WFC and used to fill
+  the white and black spaces from the background image.
+* your image should appear in a new window :)
 
 For this project, we have edited InteractiveEvolutionTask, which is implemented by a few other "tasks", such as breedesizer and animationbreeder. As a result, these will also have a zentangle button, but it won't do anything good there; it is only meant for vanilla Picbreeder as we have configured it (dual tone black and white).
 
