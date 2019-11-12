@@ -1,18 +1,42 @@
 # Quantum Zentanglement
 
 How to make a Zentangle:
-* run PicbreederTask.java
-* evolve images until you find some that you think would make interesting patterns
-* select 3 images and press zentangle! it may take take a few moments.
-* the first selected image becomes the background 
-  (first from top-left to bottom-right, NOT first chronologically)
-* the remaining two images will fill be converted into a pattern by WFC and used to fill
-  the white and black spaces from the background image.
-* your image should appear in a new window :)
+## Batch Files: 
+* Launch-Zentangle-HB.bat : Automatically generate using the half-black fitness scheme
+* Launch-Zentangle-HB3Color.bat : Automatically generate using the half-black-3-color fitness scheme
+* Launch-Zentangle-Interactive.bat : Evolve interactively using Picbreeder
+* Launch-Zentangle-RandomBW.bat : Automatically generate using the random fitness scheme in black-white only
+* Launch-Zentangle-RandomColor.bat : Automatically generate using the random fitness scheme in color
 
-For this project, we have edited InteractiveEvolutionTask, which is implemented by a few other "tasks", such as breedesizer and animationbreeder. As a result, these will also have a zentangle button, but it won't do anything good there; it is only meant for vanilla Picbreeder as we have configured it (dual tone black and white).
+## Windows: 
+* Double click on the Launch-Zentangle-Interactive.bat to create Zentangles interactively or choose any of the other 4 batch 		   files with the Launch prefix to automatically generate Zentangles using the fitness schemes random, half-black, half-black-3-color
 
-- Sarah Friday, Anna Krolikowski, and Alice Quintanilla
+## Mac/Linux/Unix: 
+* Run bash Launch-Zentangle-Interactive.bat from the terminal to create Zentangles interactively or choose any of the
+  other 4 batch files with the Launch prefix to automatically generate Zentangles using the fitness schemes random, half-black,
+  half-black-3-color
+
+Other: 
+* Run PicbreederTask.java from the terminal or an IDE
+
+## Interactive Evolution:
+* Evolve images until you find some that you think would make interesting patterns
+* Toggle between mathematical functions and color settings such as stark and black-white
+* Increase or decrease the mutation rate for more change between generations
+* Select any number of images and press the Z (Zentangle) button! It may take take a few moments.
+* Some of the images will be patterned using WFC and up to 2 will be used as template images
+* The details of how a Zentangle is formed depend on how many images contribute to the Zentangle
+	* 2 - 1 image used for template and pattern, 1 image used for distinct pattern
+	* 3 - 1 image used for template, 2 images used for distinct pattern
+	* 4 - 1 image used for template and pattern, 1 image used for template, 2 images used for distinct patterns
+	* 5 - 2 images used for templates, 3 images used for distinct patterns
+	* 6 and greater - 1 image used for template, remaining images used for combined patterns
+* Your image will appear in a new window 
+
+
+For this project, we have edited InteractiveEvolutionTask, which is implemented by a few other "tasks", such as breedesizer and animationbreeder. As a result, these tasks will also have a Zentangle button, but it will not function in those tasks.
+
+- Sarah Friday, Anna Krolikowski, Dr. Schrum, and Alice Quintanilla
 
 # Below is the readme file that originally was included in CPPNArtEvolution  
 
