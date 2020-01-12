@@ -32,7 +32,7 @@ This program makes computer generated Zentangles by first evolving images with a
 
 ## Zentangle Creation
 
-Images evolved from Picbreeder are used as input to Wave Function Collapse. Images are assigned to be tiles or templates according to the table below.
+Images evolved from Picbreeder are randomly assigned roles as tiles or templates according to the table below.
 
 Total Number of Images | Used for Templates | Used for Tiles | Additional Information
 ------------- | ------------- | ------------- | --------------------
@@ -41,6 +41,8 @@ Total Number of Images | Used for Templates | Used for Tiles | Additional Inform
 4 | 2 | 3 | 1 of the images is used as both a template and pattern
 5 | 2 | 3 |
 6 - up | 1 | 5 - up | Multiple images are used in each pattern
+
+Tile images are used as input to the Wave Function Collapse algorithm to make patterns. Below is an example of assembling a Zentangle from pattern and template images. Tile 1 and Tile 2 are made into distinct pattern images. The patterns are then inserted into template image. Pattern 1 fills the black area of the template while Pattern 2 fills the non-black.
 
 For this project, we have edited InteractiveEvolutionTask, which is implemented by a few other "tasks", such as breedesizer and animationbreeder. As a result, these tasks will also have a Zentangle button, but it will not function in those tasks.
 
