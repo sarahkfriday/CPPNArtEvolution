@@ -35,7 +35,7 @@ Total Number of Images | Used for Templates | Used for Tiles | Additional Inform
 3 | 1 | 2 |
 4 | 2 | 3 | 1 of the images is used as both a template and pattern
 5 | 2 | 3 |
-6 - up | 1 | 5 - up | Multiple images are used to create a singular pattern image
+6 - up | 1 | 5 - up | Multiple images are used in each pattern
 	
 * Your image will appear in a new window 
 
