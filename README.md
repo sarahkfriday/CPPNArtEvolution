@@ -28,13 +28,20 @@ This program makes computer generated Zentangles by first evolving images with a
 * Select any number of images and press the Z (Zentangle) button! It may take take a few moments.
 * Some of the images will be patterned using WFC and up to 2 will be used as template images
 * The details of how a Zentangle is formed depend on how many images contribute to the Zentangle
-	* 2 - 1 image used for template and pattern, 1 image used for distinct pattern
-	* 3 - 1 image used for template, 2 images used for distinct pattern
-	* 4 - 1 image used for template and pattern, 1 image used for template, 2 images used for distinct patterns
-	* 5 - 2 images used for templates, 3 images used for distinct patterns
-	* 6 and greater - 1 image used for template, remaining images used for combined patterns
+
+Chosen number of Images | # of Templates | # of Tiles | Additional Information
+------------- | ------------- | ------------- | --------------------
+2 | 1 | 1 |
+3 | 1 | 2 |
+4 | 2 | 3 | 1 of the images is used as both a template and pattern
+5 | 2 | 3 |
+6-up | 1 | 5 | Multiple images are used to create a singular pattern image
+	
 * Your image will appear in a new window 
 
+## Zentangle Creation
+
+Images evolved from Picbreeder are used as input to Wave Function Collapse. Depending on the number of images selected for Zentangling, images are assigned to be tiles or templates. 
 
 For this project, we have edited InteractiveEvolutionTask, which is implemented by a few other "tasks", such as breedesizer and animationbreeder. As a result, these tasks will also have a Zentangle button, but it will not function in those tasks.
 
