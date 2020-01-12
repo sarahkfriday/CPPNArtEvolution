@@ -1,10 +1,12 @@
 # Quantum Zentanglement
 
+This program makes computer generated Zentangles by first evolving images with a Compositional Pattern Producing Network then assembling chosen images into patterns using Wave Function Collapse. 
+
 ## How to make a Zentangle:
 ### Batch Files: 
+* Launch-Zentangle-Interactive.bat : Evolve interactively using Picbreeder
 * Launch-Zentangle-HB.bat : Automatically generate using the half-black fitness scheme
 * Launch-Zentangle-HB3Color.bat : Automatically generate using the half-black-3-color fitness scheme
-* Launch-Zentangle-Interactive.bat : Evolve interactively using Picbreeder
 * Launch-Zentangle-RandomBW.bat : Automatically generate using the random fitness scheme in black-white only
 * Launch-Zentangle-RandomColor.bat : Automatically generate using the random fitness scheme in color
 
@@ -35,6 +37,8 @@
 
 
 For this project, we have edited InteractiveEvolutionTask, which is implemented by a few other "tasks", such as breedesizer and animationbreeder. As a result, these tasks will also have a Zentangle button, but it will not function in those tasks.
+
+Publication coming soon.
 
 - Sarah Friday, Anna Krolikowski, Dr. Schrum, and Alice Quintanilla
 
