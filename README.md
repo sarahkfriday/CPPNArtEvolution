@@ -29,7 +29,7 @@ This program makes computer generated Zentangles by first evolving images with a
 * Some of the images will be patterned using WFC and up to 2 will be used as template images
 * The details of how a Zentangle is formed depend on how many images contribute to the Zentangle
 
-Chosen number of Images | Number Used for Templates | Number Used for Tiles | Additional Information
+Total Number of Images | Used for Templates | Used for Tiles | Additional Information
 ------------- | ------------- | ------------- | --------------------
 2 | 1 | 1 |
 3 | 1 | 2 |
