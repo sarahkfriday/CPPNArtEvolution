@@ -44,9 +44,12 @@ Total Number of Images | Used for Templates | Used for Tiles | Additional Inform
 
 Tile images are used as input to the Wave Function Collapse algorithm to make patterns. Below is an example of assembling a Zentangle from pattern and template images.
 
-<p align="center"> <img alt="Tile  1" width="200" height="200" src="https://drive.google.com/uc?export=view&id=17GBwB70y718vyKnv6hdMYxOk73fPn0AB"> <img  alt="Tile  2" width="200" height="200" src="https://drive.google.com/uc?export=view&id=12RQ0jh50RDuyD8mj9dFpUMNnTpZ6oNNY"> <img alt="Template" width="200" height="200" src="https://drive.google.com/uc?export=view&id=13R3rAMTqfdvDFlWbijo4m1MBePjLBTD-"> </p>
+<img alt="Tile  1" width="200" height="200" src="https://drive.google.com/uc?export=view&id=17GBwB70y718vyKnv6hdMYxOk73fPn0AB"> | <img  alt="Tile  2" width="200" height="200" src="https://drive.google.com/uc?export=view&id=12RQ0jh50RDuyD8mj9dFpUMNnTpZ6oNNY"> | <img alt="Template" width="200" height="200" src="https://drive.google.com/uc?export=view&id=13R3rAMTqfdvDFlWbijo4m1MBePjLBTD-">
+:--------------:|:------------:|:-------------:
+Tile 1 | Tile 2 | Template
 
-<p align="center"> <img alt="Pattern 1" width="200" height="200" src="https://drive.google.com/uc?export=view&id=1hD8uhgIpY4oUiDR1Qq5E_O_87wZjYBQ-"> <img alt="Pattern 2" width="200" height="200" src="https://drive.google.com/uc?export=view&id=145Q-7Go0-rWZZik3wYlRlByPtkHwM6Os"> <img alt="Zentangle" width="200" height="200" src="https://drive.google.com/uc?export=view&id=1-MDIB-xDjuF82Rjrzw9GCYTHG17DIR0i"> </p>
+<img alt="Pattern 1" width="200" height="200" src="https://drive.google.com/uc?export=view&id=1hD8uhgIpY4oUiDR1Qq5E_O_87wZjYBQ-"> | <img alt="Pattern 2" width="200" height="200" src="https://drive.google.com/uc?export=view&id=145Q-7Go0-rWZZik3wYlRlByPtkHwM6Os"> | <img alt="Zentangle" width="200" height="200" src="https://drive.google.com/uc?export=view&id=1-MDIB-xDjuF82Rjrzw9GCYTHG17DIR0i">
+Pattern 1 | Pattern 2 | Final Zentangle
 
 
 Tile 1 and Tile 2 are made into distinct pattern images. The patterns are then inserted into template image. Pattern 1 fills the black area of the template while Pattern 2 fills the non-black.
