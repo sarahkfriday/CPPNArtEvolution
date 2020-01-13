@@ -42,7 +42,7 @@ Total Number of Images | Used for Templates | Used for Tiles | Additional Inform
 5 | 2 | 3 |
 6 - up | 1 | 5 - up | Multiple images are used in each pattern
 
-Tile images are used as input to the Wave Function Collapse algorithm to make patterns. Below is an example of assembling a Zentangle from pattern and template images.
+Tile images are used as input to the Wave Function Collapse algorithm to make patterns. Below is an example of assembling a Zentangle from 3 images, 2 patterns and 1 template.
 
 <img alt="Tile  1" width="200" height="200" src="https://drive.google.com/uc?export=view&id=1xtwifo1nbpvMvbcVpARD32dygHzk-jJe"> | <img  alt="Tile  2" width="200" height="200" src="https://drive.google.com/uc?export=view&id=12RQ0jh50RDuyD8mj9dFpUMNnTpZ6oNNY"> | <img alt="Template" width="200" height="200" src="https://drive.google.com/uc?export=view&id=13R3rAMTqfdvDFlWbijo4m1MBePjLBTD-">
 :--------------:|:------------:|:-------------:
@@ -51,7 +51,7 @@ Tile 1 | Tile 2 | Template
 Pattern 1 | Pattern 2 | Final Zentangle
 
 
-Tile 1 and Tile 2 are made into distinct pattern images. The patterns are then inserted into template image. Pattern 1 fills the black area of the template while Pattern 2 fills the non-black.
+Tile 1 and Tile 2 are made into distinct pattern images. The patterns are then inserted into the template image. Pattern 1 fills the black area of the template while Pattern 2 fills the non-black.
 
 For this project, we have edited InteractiveEvolutionTask, which is implemented by a few other "tasks", such as breedesizer and animationbreeder. As a result, these tasks will also have a Zentangle button, but it will not function in those tasks.
 
