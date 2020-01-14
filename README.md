@@ -46,10 +46,10 @@ Total Number of Images | Used for Templates | Used for Tiles | Additional Inform
 
 Tile images are used as input to the Wave Function Collapse algorithm to make patterns. Below is an example of assembling a Zentangle from 3 images, 2 patterns and 1 template.
 
-<img alt="Tile  1" width="200" height="200" src="https://drive.google.com/uc?export=view&id=1xtwifo1nbpvMvbcVpARD32dygHzk-jJe"> | <img  alt="Tile  2" width="200" height="200" src="https://drive.google.com/uc?export=view&id=12RQ0jh50RDuyD8mj9dFpUMNnTpZ6oNNY"> | <img alt="Template" width="200" height="200" src="https://drive.google.com/uc?export=view&id=13R3rAMTqfdvDFlWbijo4m1MBePjLBTD-">
+<img alt="Tile  1" width="200" height="200" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/tile1.bmp"> | <img  alt="Tile  2" width="200" height="200" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/tile2.bmp"> | <img alt="Template" width="200" height="200" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/template.bmp">
 :--------------:|:------------:|:-------------:
 Tile 1 | Tile 2 | Template
-<img alt="Pattern 1" width="200" height="200" src="https://drive.google.com/uc?export=view&id=1QmPlYXnfTQ9L3Dr372ySuKjfhoBDmuMH"> | <img alt="Pattern 2" width="200" height="200" src="https://drive.google.com/uc?export=view&id=1tzjtd-15_C9seuk2hNepaFtTlyK5KZn9"> | <img alt="Zentangle" width="200" height="200" src="https://drive.google.com/uc?export=view&id=1-MDIB-xDjuF82Rjrzw9GCYTHG17DIR0i">
+<img alt="Pattern 1" width="200" height="200" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/pattern1.jpg"> | <img alt="Pattern 2" width="200" height="200" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/pattern2.jpg"> | <img alt="Zentangle" width="200" height="200" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/zentangle.png?raw=true">
 Pattern 1 | Pattern 2 | Final Zentangle
 
 
