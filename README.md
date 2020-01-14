@@ -2,6 +2,8 @@
 
 This program makes computer generated Zentangles by first evolving images in Picbreeder with a Compositional Pattern Producing Network and then assembling chosen images into patterns using Wave Function Collapse. 
 
+![Picbreeder Diagram](https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/picbreeder-diagram.PNG)
+
 ## How to make a Zentangle:
 ### Batch Files: 
 * Launch-Zentangle-Interactive.bat : Evolve interactively using Picbreeder
