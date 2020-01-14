@@ -41,7 +41,7 @@ Total Number of Images | Used for Templates | Used for tiles | Additional Inform
 2 | 1 | 1 |
 3 | 1 | 2 |
 4 | 2 | 3 | 1 of the images is used as both a template and pattern
-5 | 2 | 3 | Uses the intersection of the two templates 
+5 | 2 | 3 | Uses the intersection of the two templates. Area that is black in both templates gets one pattern, area that is white in both gets another, and area that is different in both gets the final pattern. 
 6 - up | 1 | 5 - up | Multiple images are used in each pattern
 
 Tile images are used as input to the Wave Function Collapse algorithm to make pattern images. Below is an example of assembling a Zentangle from 3 tile images: 1 template and 2 patterns.
