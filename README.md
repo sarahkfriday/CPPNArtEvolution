@@ -40,7 +40,7 @@ Total Number of Images | Used for Templates | Used for tiles | Additional Inform
 ------------- | ------------- | ------------- | --------------------
 2 | 1 | 1 |
 3 | 1 | 2 |
-4 | 2 | 3 | 1 of the images is used as both a template and pattern. Uses intersection of 2 templates
+4 | 2 | 3 | 1 of the images is used as both a template and pattern. Uses intersection of two templates
 5 | 2 | 3 | Uses the intersection of two templates. 
 6 - up | 1 | 5 - up | Multiple images are used in each pattern
 
