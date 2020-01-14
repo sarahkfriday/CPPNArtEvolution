@@ -44,7 +44,7 @@ Total Number of Images | Used for Templates | Used for tiles | Additional Inform
 5 | 2 | 3 | Uses the intersection of the two templates 
 6 - up | 1 | 5 - up | Multiple images are used in each pattern
 
-Tile images from Picbreeder are used as input to the Wave Function Collapse algorithm to make pattern images. Below is an example of assembling a Zentangle from 3 tile images: 1 template and 2 patterns.
+Tile images are used as input to the Wave Function Collapse algorithm to make pattern images. Below is an example of assembling a Zentangle from 3 tile images: 1 template and 2 patterns.
 
 <img alt="Tile  1" width="200" height="200" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/tile1.bmp"> | <img  alt="Tile  2" width="200" height="200" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/tile2.bmp"> | <img alt="Template" width="200" height="200" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/template.bmp">
 :--------------:|:------------:|:-------------:
