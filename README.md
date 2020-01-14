@@ -1,6 +1,6 @@
 # Quantum Zentanglement
 
-This program makes computer generated Zentangles by first evolving images with a Compositional Pattern Producing Network then assembling chosen images into patterns using Wave Function Collapse. 
+This program makes computer generated Zentangles by first evolving images in Picbreeder with a Compositional Pattern Producing Network and then assembling chosen images into patterns using Wave Function Collapse. 
 
 ## How to make a Zentangle:
 ### Batch Files: 
