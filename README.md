@@ -60,8 +60,8 @@ Tile 1 and Tile 2 are made into distinct pattern images. The patterns are then i
 ### Human Interactive Evolution
 Below are examples of human generated zentangle images.
 
-Number of Images Used | Black and White | Color
---------- | --------------- | -----
+Number of Images | Black and White | Color
+------- | ------------------------------ | ------------------------------
 2 | <img alt="2 Black and White 1" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/bw2-1.png"> <img alt="2 Black and White 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/bw2-2.png"> | <img alt="2 Color 1" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/color2-1.png"> <img alt="2 Color 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/color2-2.png">
 3 | <img alt="3 Black and White 1" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/bw3-1.png"> <img alt="3 Black and White 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/bw3-2.png"> | <img alt="3 Color 1" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/color3-1.png"> <img alt="3 Color 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/color3-2.png">
 4 | <img alt="4 Black and White 1" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/bw4-1.png"> <img alt="4 Black and White 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/bw4-2.png"> | <img alt="4 Color 1" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/color4-1.png"> <img alt="4 Color 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/color4-2.png">
@@ -81,8 +81,8 @@ Automated evolution uses 3 different fitness schemes to evolve Picbreeder images
 
 Below is a table of automatically evolved zentangle images.
 
-Number of Images Used | Random Black-White| Random Color | Half-Black | Half-Black-3-Color
---------- | --------------- | ----------------|-----------------|----------------
+Number of Images | Random Black-White| Random Color | Half-Black | Half-Black-3-Color
+------- | --------------- | ----------------|-----------------|----------------
 2 | <img alt="Random BW 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoRandBW2.png"> | <img alt="Random Color 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoRandom2.png"> | <img alt="Half Black 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoHB2.png"> | <img alt="Half Black 3 Color 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoHBC2.png">
 3 | <img alt="Random BW 3" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoRandBW3.png"> | <img alt="Random Color 3" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoRandom3.png"> | <img alt="Half Black 3" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoHB3.png"> | <img alt="Half Black 3 Color 3" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoHBC3.png">
 4 | <img alt="Random BW 4" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoRandBW4.png"> | <img alt="Random Color 4" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoRandom4.png"> | <img alt="Half Black 4" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoHB4.png"> | <img alt="Half Black 3 Color 4" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/AutoHBC4.png">
