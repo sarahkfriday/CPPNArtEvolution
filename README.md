@@ -57,7 +57,8 @@ Pattern 1 | Pattern 2 | Final Zentangle
 
 Tile 1 and Tile 2 are made into distinct pattern images. The patterns are then inserted into the template image. Pattern 1 fills the black area of the template while Pattern 2 fills the non-black.
 
-Below is an example of human generated zentangle images.
+### Human Interactive Evolution
+Below are examples of human generated zentangle images.
 
 Number of Images Used | Black and White | Color
 --------- | --------------- | -----
@@ -74,9 +75,9 @@ Automated evolution uses 3 different fitness schemes to evolve Picbreeder images
 * Half-Black: selects images with ratio of black to white pixels closest to 0.5
 * Half-Black-3-Color: selects images using a combination of 4 fitness schemes
     * Half-black: see above
-    * Red: 
-    * Green: 
-    * Blue: 
+    * Red: maximize red channel and minimize others
+    * Green: maximize green channel and minimize others
+    * Blue: maximize blue channel and minimize others
 
 Below is a table of automatically evolved zentangle images.
 
@@ -96,6 +97,6 @@ Publication coming soon.
 
 ## Help
 
-If you need any help, then please contact me at schrum2@southwestern.edu!
+If you need any help, then please contact Dr. Jacob Schrum at schrum2@southwestern.edu!
 
 Also, you can evolve neural networks for lots of other interesting applications by using the original [MM-NEAT project](https://github.com/schrum2/MM-NEAT), which contains the interactive evolution code from this project, along with code to evolve agent behavior for various tasks (Ms. Pac-Man, Tetris, and Mario to name a few)
