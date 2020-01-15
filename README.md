@@ -68,6 +68,8 @@ Number of Images Used | Black and White | Color
 6 | <img alt="6 Black and White 1" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/bw6-1.png"> <img alt="6 Black and White 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/bw6-2.png"> | <img alt="6 Color 1" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/color6-1.png"> <img alt="6 Color 2" width="150" height="150" src="https://github.com/sarahkfriday/QuantumZentanglement/blob/master/images/color6-2.png">
 
 ### Automated Evolution
+Automated evolution of images from Picbreeder uses the multi-objective evolutionary algorithm Non-dominated Sorting Genetic Algorithm II (NSGAII) with (&mu + &lambda) selection where &mu = &lambda. 
+Below is a table of automatically evolved zentangle images.
 
 Number of Images Used | Random Black-White| Random Color | Half-Black | Half-Black-3-Color
 --------- | --------------- | ----------------|-----------------|----------------
