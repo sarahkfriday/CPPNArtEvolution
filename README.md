@@ -25,9 +25,9 @@ This program makes computer generated Zentangles by first evolving images in Pic
 
 ### Interactive Evolution
 * Evolve images until you find some that you think would make interesting patterns
-* Toggle between mathematical functions and color settings such as stark and black-white
+* Toggle the activation functions and color/black-white setting as you please. Keep the "stark" option on
 * Increase or decrease the mutation rate for more change between generations
-* Select any number of images and press the Z (Zentangle) button! It may take take a few moments.
+* Select at least two images and press the Z (Zentangle) button! It may take take a few moments
 * Some of the images will be patterned using WFC and up to 2 will be used as template images
 * The details of how a Zentangle is formed depend on how many images contribute to the Zentangle (see Zentangle Creation section)
 * Your image will appear in a new window 
