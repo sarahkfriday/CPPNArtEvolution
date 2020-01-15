@@ -38,11 +38,11 @@ Images evolved from Picbreeder are randomly assigned roles as tiles or templates
 
 Total Number of Images | Used for Templates | Used for tiles | Additional Information
 ------------- | ------------- | ------------- | --------------------
-2 | 1 | 1 |
-3 | 1 | 2 |
-4 | 2 | 3 | 1 of the images is used as both a template and pattern. Uses intersection of two templates
-5 | 2 | 3 | Uses the intersection of two templates. 
-6 - up | 1 | 5 - up | Multiple images are used in each pattern
+2 | 1 | 2 | One image used for both template and tiles.
+3 | 1 | 2 | Template and tile images are distinct.
+4 | 2 | 3 | One image used for both template and tiles. Uses intersection of two templates
+5 | 2 | 3 | Template and tile images are distinct. Uses the intersection of two templates. 
+6+ | 1 | 5+ | Multiple images are used in each of two tile patterns.
 
 When using the intersection of two templates, areas that are black in both templates are filled with one pattern, areas that are non-black in both templates are filled with another pattern, and areas that are different in both are filled with the remaining pattern.
 
