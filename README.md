@@ -91,8 +91,6 @@ Number of Images | Random Black-White| Random Color | Half-Black | Half-Black-3-
 
 For this project, we have edited InteractiveEvolutionTask, which is implemented by a few other "tasks", such as breedesizer and animationbreeder. As a result, these tasks will also have a Zentangle button, but it will not function in those tasks.
 
-Publication coming soon.
-
 - Sarah Friday, Anna Krolikowski, Alice Quintanilla, and Dr. Jacob Schrum
 
 ## Help
@@ -100,3 +98,26 @@ Publication coming soon.
 If you need any help, then please contact Dr. Jacob Schrum at schrum2@southwestern.edu!
 
 Also, you can evolve neural networks for lots of other interesting applications by using the original [MM-NEAT project](https://github.com/schrum2/MM-NEAT), which contains the interactive evolution code from this project, along with code to evolve agent behavior for various tasks (Ms. Pac-Man, Tetris, and Mario to name a few)
+
+## Citing
+
+If you use any of this code for any project or publication, please cite the following paper:
+
+```
+@inproceedings{krolikowski:evomusart2020,
+title={Quantum Zentanglement: Combining Picbreeder and Wave Function Collapse to Create Zentangles®},
+author={Krolikowski, Anna and Friday, Sarah and Quintanilla, Alice and Schrum, Jacob},
+year={2020},
+editor={Romero, Juan and Ek{\'a}rt, Anik{\'o} and Martins, Tiago and Correia, Jo{\~a}o},
+booktitle={Artificial Intelligence in Music, Sound, Art and Design},
+series={EvoMUSART 2020. Lecture Notes in Computer Science},
+volume={12103},
+pages={49--65},
+numpages={16},
+url = {https://people.southwestern.edu/~schrum2/re/papers/krolikowski.evomusart2020.pdf},
+doi = {10.1007/978-3-030-43859-3_4},
+publisher={Springer International Publishing},
+address={Cham, Switzerland},
+location={Seville, Spain}
+}
+```
